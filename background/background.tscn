@@ -1,0 +1,8 @@
+[gd_scene format=1]
+
+[node name="ParallaxLayer" type="ParallaxLayer"]
+
+motion/scale = Vector2( 1, 1 )
+motion/mirroring = Vector2( 0, 0 )
+
+
