@@ -1,5 +1,26 @@
-[gd_scene format=1]
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://player_ship/player.png" type="Texture" id=1]
+[ext_resource path="res://player_ship/player1.gd" type="Script" id=2]
 
 [node name="Node2D" type="Node2D"]
+
+transform/pos = Vector2( 0.155914, 0.622753 )
+
+[node name="player" type="Sprite" parent="."]
+
+transform/pos = Vector2( 151.567, 290.614 )
+transform/scale = Vector2( 0.182537, 0.182537 )
+texture = ExtResource( 1 )
+script/script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player"]
+
+transform/pos = Vector2( -15.4807, 19.0268 )
+transform/scale = Vector2( 7.75827, 8.3139 )
+build_mode = 0
+polygon = Vector2Array( -8.44804, -17.3232, -8.07588, 6.63951, -3.23782, 11.3279, 18.3474, 9.76511, 23.1854, 0.214706, 17.7891, -12.4612, 3.27496, -19.407 )
+shape_range = Vector2( -1, -1 )
+trigger = false
 
 
