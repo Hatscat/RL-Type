@@ -50,14 +50,11 @@ scroll/ignore_camera_zoom = false
 
 motion/scale = Vector2( 0.2, 1 )
 motion/mirroring = Vector2( 1920, 0 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="bg_layer"]
 
-transform/pos = Vector2( 962.324, 538.741 )
-transform/rot = -90.0
-transform/scale = Vector2( 0.562102, 1.78184 )
 texture = ExtResource( 1 )
+centered = false
 
 [node name="bg_layer2" type="ParallaxLayer" parent="."]
 
