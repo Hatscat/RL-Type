@@ -15,7 +15,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Control:margin/left")
 tracks/0/interp = 1
-tracks/0/keys = { "cont":true, "times":FloatArray( 0, 2, 4, 10 ), "transitions":FloatArray( 1.09548e-006, 1, 1, 1 ), "values":[ -550.0, -550.0, 650, 650 ] }
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 2, 4, 10 ), "transitions":FloatArray( 1.09548e-006, 1, 1, 1 ), "values":[ 0, 0, 2020, 2020 ] }
 
 [node name="Control" type="Control"]
 
@@ -77,7 +77,6 @@ max_lines_visible = -1
 anchor/left = 3
 anchor/right = 3
 margin/left = 87.0
-margin/top = 89.0
 margin/right = -88.0
 margin/bottom = 137.0
 focus/ignore_mouse = true
@@ -105,14 +104,14 @@ autoplay = "MenuAnim"
 
 [node name="Control" type="Control" parent="."]
 
-anchor/left = 3
+anchor/left = 1
 anchor/top = 3
-anchor/right = 3
+anchor/right = 1
 anchor/bottom = 3
-margin/left = -550.0
-margin/top = 79.0
-margin/right = 555.0
-margin/bottom = -145.0
+margin/left = 2020.0
+margin/top = 57.0
+margin/right = 1870.0
+margin/bottom = -193.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
