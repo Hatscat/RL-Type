@@ -1,5 +1,15 @@
-[gd_scene format=1]
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://player_ship/player.png" type="Texture" id=1]
 
 [node name="Node2D" type="Node2D"]
+
+transform/pos = Vector2( 0.155914, 0.622753 )
+
+[node name="player" type="Sprite" parent="."]
+
+transform/pos = Vector2( 151.567, 290.614 )
+transform/scale = Vector2( 0.182537, 0.182537 )
+texture = ExtResource( 1 )
 
 
