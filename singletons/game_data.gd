@@ -1,6 +1,9 @@
 extends Node
 
+signal score_changed(score)
+
 var current_scene = null
+var score = 0
 
 func _ready():
         var root = get_tree().get_root()
@@ -37,3 +40,7 @@ func _deferred_goto_scene(path):
 
     # optional, to make it compatible with the SceneTree.change_scene() API
     get_tree().set_current_scene( current_scene )
+
+func set_score(new_score):
+	score = new_score
+	emit_signal("score_changed", score)

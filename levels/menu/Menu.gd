@@ -1,7 +1,5 @@
 extends Control
 
-var score = 0
-
 func _ready():
 	get_node("Button").grab_focus()
 
