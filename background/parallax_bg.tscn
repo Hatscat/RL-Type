@@ -63,7 +63,6 @@ texture = ExtResource( 1 )
 
 motion/scale = Vector2( 0.5, 1 )
 motion/mirroring = Vector2( 1920, 0 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Sprite" type="Sprite" parent="bg_layer2"]
 
@@ -163,6 +162,79 @@ texture = ExtResource( 2 )
 [node name="Sprite19" type="Sprite" parent="bg_layer2"]
 
 transform/pos = Vector2( 271.589, 960.683 )
+texture = ExtResource( 2 )
+
+[node name="Sprite20" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1130.86, 685.4 )
+texture = ExtResource( 2 )
+
+[node name="Sprite21" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1293.65, 1009.48 )
+texture = ExtResource( 2 )
+
+[node name="Sprite22" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1328.32, 852.715 )
+texture = ExtResource( 2 )
+
+[node name="Sprite23" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1504.68, 759.26 )
+texture = ExtResource( 2 )
+
+[node name="Sprite24" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1711.18, 873.818 )
+texture = ExtResource( 2 )
+
+[node name="Sprite25" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1724.75, 935.619 )
+texture = ExtResource( 2 )
+
+[node name="Sprite26" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1362.99, 406.543 )
+texture = ExtResource( 2 )
+
+[node name="Sprite27" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1494.13, 506.027 )
+texture = ExtResource( 2 )
+
+[node name="Sprite28" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1494.13, 506.027 )
+texture = ExtResource( 2 )
+
+[node name="Sprite29" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1166.04, 169.737 )
+texture = ExtResource( 2 )
+
+[node name="Sprite30" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1627.41, 167.687 )
+texture = ExtResource( 2 )
+
+[node name="Sprite31" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1660.22, 421.955 )
+transform/scale = Vector2( 1, 0.999999 )
+texture = ExtResource( 2 )
+
+[node name="Sprite32" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1856.59, 658.603 )
+transform/scale = Vector2( 1, 0.999999 )
+texture = ExtResource( 2 )
+
+[node name="Sprite33" type="Sprite" parent="bg_layer2"]
+
+transform/pos = Vector2( 1866.66, 74.5352 )
+transform/scale = Vector2( 1, 0.999999 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
