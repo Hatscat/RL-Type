@@ -13,6 +13,7 @@ transform/pos = Vector2( 151.567, 290.614 )
 transform/scale = Vector2( 0.182537, 0.182537 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
+SPEED = 200
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player"]
 

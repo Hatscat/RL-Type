@@ -2,7 +2,7 @@
 extends Sprite
 
 # member variables here
-const SPEED = 200
+export var SPEED = 200
 
 var screen_size
 var prev_shooting = false
@@ -35,6 +35,7 @@ func _process(delta):
 		pos.y = screen_size.y
 	
 	set_pos(pos)
+	
 
 
 func _ready():
