@@ -1,5 +1,5 @@
 
-extends Sprite
+extends Area2D
 
 # member variables here
 export var SPEED = 200
