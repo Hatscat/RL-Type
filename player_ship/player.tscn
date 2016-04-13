@@ -5,12 +5,12 @@
 [ext_resource path="res://player_ship/player_sprite.png" type="Texture" id=3]
 [ext_resource path="res://player_ship/burn.png" type="Texture" id=4]
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 3.27496, -19.407, 17.7891, -12.4612, 23.1854, 0.214706, 18.3474, 9.76511, -3.23782, 11.3279, -8.07588, 6.63951, -8.44804, -17.3232 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 
 length = 0.1
 loop = false
@@ -20,7 +20,7 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.1 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, 5 ] }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 
 length = 0.3
 loop = true
@@ -42,8 +42,8 @@ script/script = ExtResource( 1 )
 
 transform/pos = Vector2( 259.241, 291.193 )
 input/pickable = true
-shapes/0/shape = SubResource( 5 )
-shapes/0/transform = Matrix32( 1.41617, -0, 0, 1.51759, 0.396681, 5 )
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1.41617, 0, 0, 1.51759, 0.396681, 5 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -67,7 +67,7 @@ __meta__ = { "_editor_collapsed":true }
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/shoot = SubResource( 3 )
+anims/shoot = SubResource( 2 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -97,7 +97,7 @@ __meta__ = { "_editor_collapsed":true }
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/burn = SubResource( 4 )
+anims/burn = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -117,7 +117,7 @@ __meta__ = { "_editor_collapsed":true }
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/burn = SubResource( 4 )
+anims/burn = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
