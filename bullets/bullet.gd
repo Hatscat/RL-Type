@@ -66,7 +66,11 @@ func _hit_something():
 
 
 func _on_shot_area_enter(area):
+	if(hit || area.has_method("is_bullet") || area.has_method("is_weapon")):
+		return
 	if (area.has_method("on_bullet_hit")):
 		area.on_bullet_hit()
-		
+
 	_hit_something()
+	
+	

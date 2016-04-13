@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://bullets/bullet.gd" type="Script" id=1]
-[ext_resource path="res://bullets/bullet_ball.png" type="Texture" id=2]
+[ext_resource path="res://bullets/is_bullet.gd" type="Script" id=2]
+[ext_resource path="res://bullets/bullet_ball.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -51,10 +52,11 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+script/script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Area2D"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="Tween" type="Tween" parent="Area2D"]
 
@@ -90,6 +92,7 @@ transform/scale = Vector2( 5, 5 )
 z/relative = false
 config/amount = 32
 config/lifetime = 0.5
+config/emit_timeout = 0.5
 config/emitting = false
 params/direction = 0.0
 params/spread = 180.0
@@ -113,8 +116,6 @@ params/anim_initial_pos = 0.0
 transform/pos = Vector2( -1.91643, -0.289452 )
 transform/scale = Vector2( 5.08935, 4.88608 )
 rect = Rect2( -10, -10, 20, 20 )
-
-[connection signal="area_enter" from="Area2D" to="." method="_on_shot_area_enter"]
 
 [connection signal="exit_screen" from="VisibilityNotifier2D" to="." method="_on_visibility_exit_screen"]
 

@@ -58,3 +58,6 @@ func _on_player_area_enter( area ):
 		current_weapon.on_picked()
 		add_child(current_weapon)
 		current_weapon.set_pos(weapon_pos)
+		
+func on_bullet_hit():
+	pass

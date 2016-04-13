@@ -125,7 +125,7 @@ autoplay = ""
 
 [node name="weapon_pos" type="Position2D" parent="player"]
 
-transform/pos = Vector2( 31.6619, 15.2637 )
+transform/pos = Vector2( 35.6079, 15.2637 )
 transform/scale = Vector2( 0.150697, 0.159555 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
