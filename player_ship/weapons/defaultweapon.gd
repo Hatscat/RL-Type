@@ -1,39 +1,28 @@
 extends Area2D
 
-# member variables here, example:
-
-var activated = true
-var screen_size
-var timer=0
-var canshoot = false
+export var cooldown = 0
+var timer = 0
+var canshoot = true
+var weapon
 
 func _process(delta):
-	
-	
-	
-	if (activated):
-		if Input.is_action_pressed("shoot"):
-			
-			shoot(delta)
-		else:
-			timer=0
-			canshoot=false
-
-
-
-func shoot(delta):
-	if(canshoot):
-		canshoot=false
-		timer=0.5
-	if(timer<0):
-		print ("shoot")
+	if Input.is_action_pressed("shoot") && canshoot:
+		weapon.shot()
+		canshoot = false
+		timer = cooldown
+		
+	if(timer <= 0):
 		canshoot = true
-	timer-=delta
-	
+	else:
+		timer -= delta
 
 func _ready():
-	screen_size = get_viewport().get_rect().size
+	weapon = get_node("Weapon")
+	
+func _on_picked():
 	set_process(true)
-	pass
+
+func _on_droped():
+	set_process(false)
 
 
