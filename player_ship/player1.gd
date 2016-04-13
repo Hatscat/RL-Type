@@ -33,6 +33,8 @@ func _process(delta):
 		pos.y = 0
 	if (pos.y > screen_size.y):
 		pos.y = screen_size.y
+		
+	
 	
 	set_pos(pos)
 	

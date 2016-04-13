@@ -1,27 +1,35 @@
 extends Area2D
 
 # member variables here, example:
-var prev_shooting = false
+
 var activated = true
 var screen_size
+var timer=0
+var canshoot = false
 
 func _process(delta):
 	
 	
 	
 	if (activated):
-		
-		var shooting = Input.is_action_pressed("shoot")
-		shoot(shooting)
-		
+		if Input.is_action_pressed("shoot"):
+			
+			shoot(delta)
+		else:
+			timer=0
+			canshoot=false
 
-func shoot(shooting):
-	
-	if (shooting and not prev_shooting):
+
+
+func shoot(delta):
+	if(canshoot):
+		canshoot=false
+		timer=0.5
+	if(timer<0):
 		print ("shoot")
+		canshoot = true
+	timer-=delta
 	
-	
-	prev_shooting = shooting
 
 func _ready():
 	screen_size = get_viewport().get_rect().size
