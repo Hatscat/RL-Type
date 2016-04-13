@@ -11,14 +11,24 @@ var target = null
 var tween_type = null
 var anim_name = null
 var anim_speed = null
+var sprite = null
+var color = null
+var scale = null
 
 
 func _ready():
 	set_rot(direction)
+	if sprite != null:
+		get_node("Area2D/Sprite").set_texture(sprite)
+	if color != null:
+		get_node("Area2D/Sprite").set_modulate(color)
+	if scale != null:
+		set_scale(scale)
 	if tween_type != null:
 		pass #todo
 	if anim_name != null:
 		get_node("Area2D/Anim").play(anim_name)
+		get_node("Area2D/Anim").seek(randf() * get_node("Area2D/Anim").get_animation(anim_name).get_length())
 		if anim_speed != null:
 			get_node("Area2D/Anim").set_speed(anim_speed)
 	set_process(true)
@@ -27,11 +37,11 @@ func _ready():
 func _process(delta):
 	if target != null:
 		var dir = target - get_global_pos()
-		set_rot(atan2(get_pos().y - target.y, target.x - get_pos().x))
-		if (dir.length_squared() > 2):
-			translate(dir.normalized() * speed * delta)
+		if (dir.length_squared() < 2):
+			set_pos(target)
 		else:
-			get_node("Area2D/Anim").stop_all()
+			set_rot(atan2(get_pos().y - target.y, target.x - get_pos().x))
+			translate(dir.normalized() * speed * delta)
 	else:
 		translate(Vector2(cos(direction), sin(-direction)) * speed * delta)
 

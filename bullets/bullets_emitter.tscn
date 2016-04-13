@@ -7,8 +7,12 @@
 script/script = ExtResource( 1 )
 root_node_name = "Node2D"
 bullet_anim_name = null
+bullet_anim_speed = 1
 bullet_min_speed = 200
 bullet_max_speed = 500
 bullet_direction = 0
+bullet_color = null
+shape_speed = 0
+shape_direction = 0
 
 

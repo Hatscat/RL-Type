@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://bullets/tests.gd" type="Script" id=1]
 [ext_resource path="res://bullets/bullets_emitter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://bullets/bullet_ball.png" type="Texture" id=3]
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,6 +10,28 @@ script/script = ExtResource( 1 )
 
 [node name="bullets_emitter" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 374.73, 162.986 )
+transform/pos = Vector2( 322.652, 113.124 )
+bullet_sprite = ExtResource( 3 )
+bullet_color = Color( 0.0546875, 1, 0, 1 )
+bullet_scale = Vector2( 0.5, 0.5 )
+bullet_anim_name = "sin"
+bullet_anim_speed = 5.0
+shape_speed = 50
+shape_direction = 3.14
+
+[node name="shape" type="Polygon2D" parent="bullets_emitter"]
+
+transform/pos = Vector2( 411.238, 167.7 )
+transform/scale = Vector2( 10.1656, 7.48563 )
+polygon = Vector2Array( -6.67758, 4.69308, -28.7838, -3.25721, -6.60988, -5.6691, -3.62154, -33.8549, 1.91753, -7.02958, 26.9225, -2.83771, 3.77092, 5.76201, 0.136314, 33.4833 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+offset = Vector2( 8, 20 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
 
 

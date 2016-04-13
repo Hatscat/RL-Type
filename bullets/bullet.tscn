@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://bullets/bullet.gd" type="Script" id=1]
-[ext_resource path="res://bullets/bullet.png" type="Texture" id=2]
+[ext_resource path="res://bullets/bullet_ball.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
 
@@ -34,6 +34,7 @@ tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.3, 0.9 ), "transitions":
 
 [node name="Node2D" type="Node2D"]
 
+transform/scale = Vector2( 0.5, 0.5 )
 script/script = ExtResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]

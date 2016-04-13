@@ -1,18 +1,18 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://player_ship/weapons/defaultweapon.gd" type="Script" id=1]
+[ext_resource path="res://player_ship/weapons/machine_gun.gd" type="Script" id=2]
+[ext_resource path="res://bullets/bullets_emitter.tscn" type="PackedScene" id=3]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Area2D" type="Area2D" parent="."]
-
-input/pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
 script/script = ExtResource( 1 )
+cooldown = 0
 
-[node name="Sprite" type="Sprite" parent="Area2D"]
+[node name="Weapon" type="Sprite" parent="."]
+
+script/script = ExtResource( 2 )
+
+[node name="Emmiter" parent="." instance=ExtResource( 3 )]
 
 
