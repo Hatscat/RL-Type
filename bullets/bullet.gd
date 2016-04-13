@@ -36,6 +36,7 @@ func _ready():
 		get_node("Area2D/Anim").seek(randf() * get_node("Area2D/Anim").get_animation(anim_name).get_length())
 		if anim_speed != null:
 			get_node("Area2D/Anim").set_speed(anim_speed)
+	get_node("Area2D").connect("area_enter", self, "_on_shot_area_enter")
 	set_process(true)
 
 
@@ -71,6 +72,9 @@ func _hit_something():
 
 
 func _on_shot_area_enter(area):
-	if area != null and area.has_method("on_bullet_hit"):
+	if hit or area.has_method("is_bullet") or area.has_method("is_weapon"):
+		return
+	if area.has_method("on_bullet_hit"):
 		area.on_bullet_hit()
 	_hit_something()
+	

@@ -14,14 +14,21 @@ func _process(delta):
 	
 	#need to take axis !
 	var motion = Vector2()
-	if Input.is_action_pressed("move_up"):
-		motion += Vector2(0, -1)
-	if Input.is_action_pressed("move_down"):
-		motion += Vector2(0, 1)
-	if Input.is_action_pressed("move_left"):
-		motion += Vector2(-1, 0)
-	if Input.is_action_pressed("move_right"):
-		motion += Vector2(1, 0)
+	if(Input.get_joy_axis(0, 1) > 0.15 || Input.get_joy_axis(0, 1) < -0.15):
+		motion += Vector2(0, Input.get_joy_axis(0, 1))
+	else:
+		if(Input.is_action_pressed("move_up")):
+			motion += Vector2(0, -1)
+		elif(Input.is_action_pressed("move_down")):
+			motion += Vector2(0, 1)
+	if(Input.get_joy_axis(0, 0) > 0.15 || Input.get_joy_axis(0, 0) < -0.15):
+		motion += Vector2(Input.get_joy_axis(0, 0), 0)
+	else:
+		if(Input.is_action_pressed("move_left")):
+			motion += Vector2(-1, 0)
+		elif(Input.is_action_pressed("move_right")):
+			motion += Vector2(1, 0)
+
 	
 	var pos = get_pos()
 	pos += motion*speed*delta
@@ -58,3 +65,6 @@ func _on_player_area_enter( area ):
 		current_weapon.on_picked()
 		add_child(current_weapon)
 		current_weapon.set_pos(weapon_pos)
+		
+func on_bullet_hit():
+	pass
