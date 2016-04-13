@@ -35,7 +35,15 @@ func _process(delta):
 		pos.y = screen_size.y
 	
 	set_pos(pos)
+	shoot(shooting)
+
+func shoot(shooting):
 	
+	if (shooting and not prev_shooting):
+		print ("shoot")
+	
+	
+	prev_shooting = shooting
 
 
 func _ready():
