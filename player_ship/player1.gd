@@ -2,7 +2,7 @@
 extends Area2D
 
 # member variables here
-export var SPEED = 200
+export var speed = 200
 
 var screen_size
 var prev_shooting = false
@@ -11,20 +11,21 @@ var killed = false
 
 
 func _process(delta):
+	
 	var motion = Vector2()
 	if Input.is_action_pressed("move_up"):
-		motion += Vector2(0, -1.5)
+		motion += Vector2(0, -1)
 	if Input.is_action_pressed("move_down"):
-		motion += Vector2(0, 1.5)
+		motion += Vector2(0, 1)
 	if Input.is_action_pressed("move_left"):
-		motion += Vector2(-2.25, 0)
+		motion += Vector2(-1, 0)
 	if Input.is_action_pressed("move_right"):
-		motion += Vector2(1.5, 0)
+		motion += Vector2(1, 0)
 	
 	
 	var pos = get_pos()
+	pos += motion*delta*speed*2
 	
-	pos += motion*delta*SPEED
 	if (pos.x < 0):
 		pos.x = 0
 	if (pos.x > screen_size.x):
