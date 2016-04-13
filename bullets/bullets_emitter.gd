@@ -6,7 +6,9 @@ export(String) var root_node_name = "Node2D"
 export(int) var bullet_min_speed = 100
 export(int) var bullet_max_speed = 400
 export(float) var bullet_direction = 0
+export(Texture) var bullet_sprite = preload("res://bullets/bullet_ball.png")
 export(Color, RGBA) var bullet_color = null
+export(Vector2) var bullet_scale = Vector2(1, 1)
 export(String) var bullet_anim_name = null
 export(float) var bullet_anim_speed = 1
 # shape config
@@ -38,7 +40,7 @@ func emit_bullets(bullets_nb, total_duration=0): # + intervales
 	if shape != null:
 		target_pts = get_shape_pts(get_shape_polygons(), bullets_nb)
 	# bullets setup
-	for i in range (bullets_nb):
+	for i in range(bullets_nb):
 		var b = Bullet.instance()
 		bullets.append(b)
 		b.set_pos(get_global_pos())
@@ -51,7 +53,9 @@ func emit_bullets(bullets_nb, total_duration=0): # + intervales
 		b.tween_type = null #todo
 		b.anim_name = bullet_anim_name
 		b.anim_speed = bullet_anim_speed
+		b.sprite = bullet_sprite
 		b.color = bullet_color
+		b.scale = bullet_scale
 		get_tree().get_root().get_node(root_node_name).add_child(b)
 
 
