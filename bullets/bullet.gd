@@ -13,19 +13,6 @@ var anim_name = null
 var anim_speed = null
 
 
-#func setup(_min_speed, _max_speed, _direction=0, _target=null, _tween_type=null, _anim_name=null, _anim_speed=null):
-#	min_speed = _min_speed
-#	max_speed = _max_speed
-#	speed = min_speed #tmp?
-#	direction = _direction
-#	print(direction)
-#	set_rot(direction)
-#	target = _target
-#	tween_type = _tween_type
-#	anim_name =_anim_name
-#	anim_speed = _anim_speed
-
-
 func _ready():
 	set_rot(direction)
 	if tween_type != null:
@@ -50,6 +37,7 @@ func _process(delta):
 
 
 func _on_visibility_exit_screen():
+	print("good bye!")
 	queue_free()
 
 
@@ -58,7 +46,7 @@ func _hit_something():
 		return
 	hit = true
 	set_process(false)
-	#get_node("Area2D/Anim").play("splash") #todo
+	get_node("Area2D/Anim").play("explode")
 
 
 func _on_shot_area_enter(area):
