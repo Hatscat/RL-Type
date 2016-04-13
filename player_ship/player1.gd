@@ -41,5 +41,7 @@ func _process(delta):
 
 
 func _ready():
+	get_node("propulsion").get_node("anim").play("burn")
+	get_node("propulsion1").get_node("anim").play("burn")
 	screen_size = get_viewport().get_rect().size
 	set_process(true)
