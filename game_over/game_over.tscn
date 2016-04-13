@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=11 format=1]
 
-[ext_resource path="res://game_over/modal.png" type="Texture" id=1]
-[ext_resource path="res://game_over/retryBtn.gd" type="Script" id=2]
-[ext_resource path="res://game_over/menuBtn.gd" type="Script" id=3]
-[ext_resource path="res://game_over/tips.gd" type="Script" id=4]
+[ext_resource path="res://game_over/Gameover-overlay.png" type="Texture" id=1]
+[ext_resource path="res://game_over/Gameover-doge.png" type="Texture" id=2]
+[ext_resource path="res://game_over/Gameover-text.png" type="Texture" id=3]
+[ext_resource path="res://game_over/tipsFont.fnt" type="Font" id=4]
+[ext_resource path="res://game_over/tips.gd" type="Script" id=5]
+[ext_resource path="res://game_over/scoreFont.fnt" type="Font" id=6]
+[ext_resource path="res://game_over/btn_retry.png" type="Texture" id=7]
+[ext_resource path="res://game_over/btn_retry_pressed.png" type="Texture" id=8]
+[ext_resource path="res://game_over/btn_menu.png" type="Texture" id=9]
+[ext_resource path="res://game_over/btn_menu_pressed.png" type="Texture" id=10]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -25,130 +31,113 @@ texture = ExtResource( 1 )
 modulate = Color( 0.253906, 0.242004, 0.242004, 1 )
 expand = true
 
-[node name="RetryBtn" type="Button" parent="."]
+[node name="Doge" type="TextureFrame" parent="."]
 
-anchor/left = 3
-anchor/top = 3
-anchor/right = 3
-anchor/bottom = 3
-margin/left = 128.0
-margin/top = 91.0
-margin/right = -92.0
-margin/bottom = 25.0
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-toggle_mode = false
-text = "Retry"
-flat = false
-script/script = ExtResource( 2 )
-
-[node name="ScoresBtn" type="Button" parent="."]
-
-anchor/left = 3
-anchor/top = 3
-anchor/right = 3
-anchor/bottom = 3
-margin/left = 371.0
-margin/top = 92.0
-margin/right = 151.0
-margin/bottom = 26.0
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-toggle_mode = false
-text = "Scores"
-flat = false
-
-[node name="Menu" type="Button" parent="."]
-
-anchor/left = 3
-anchor/top = 3
-anchor/right = 3
-anchor/bottom = 3
-margin/left = -114.0
-margin/top = 92.0
-margin/right = -334.0
-margin/bottom = 26.0
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-toggle_mode = false
-text = "Menu"
-flat = false
-script/script = ExtResource( 3 )
-
-[node name="Label" type="Label" parent="."]
-
-margin/left = 899.0
-margin/top = 195.0
-margin/right = 925.0
-margin/bottom = 211.0
-rect/scale = Vector2( 3, 3 )
+margin/left = 1095.0
+margin/top = -74.0
+margin/right = 1607.0
+margin/bottom = 438.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
-text = "#35"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+size_flags/vertical = 2
+texture = ExtResource( 2 )
 
-[node name="Text" type="Label" parent="."]
+[node name="Title" type="TextureFrame" parent="."]
+
+margin/left = 94.0
+margin/top = -348.0
+margin/right = 1118.0
+margin/bottom = 676.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+texture = ExtResource( 3 )
+
+[node name="Tips" type="Label" parent="."]
 
 anchor/right = 1
 anchor/bottom = 1
-margin/top = 903.0
-margin/right = 1536.0
-margin/bottom = 164.0
-rect/scale = Vector2( 5, 5 )
+margin/left = 509.0
+margin/top = 268.0
+margin/right = 803.0
+margin/bottom = 758.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "To live longer, try to not die..."
-align = 1
+align = 2
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script/script = ExtResource( 4 )
+script/script = ExtResource( 5 )
 
-[node name="Label 2" type="Label" parent="."]
+[node name="Score" type="Label" parent="."]
 
 anchor/left = 3
 anchor/right = 3
-margin/left = 140.0
-margin/top = 94.0
-margin/right = 93.0
-margin/bottom = 115.0
-rect/scale = Vector2( 5, 5 )
+margin/left = 865.0
+margin/top = 550.0
+margin/right = -35.0
+margin/bottom = 671.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
-text = "150 000"
-align = 1
+custom_fonts/font = ExtResource( 6 )
+text = "SCORE: 150 000"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Tips" type="TextureFrame" parent="."]
+[node name="Rank" type="Label" parent="."]
 
-anchor/top = 1
-anchor/right = 1
-anchor/bottom = 1
-margin/top = 140.0
-margin/bottom = 65.0
+anchor/left = 3
+anchor/right = 3
+margin/left = 865.0
+margin/top = 700.0
+margin/right = -35.0
+margin/bottom = 821.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 6 )
+text = "RANK: #28"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TextureButton" type="TextureButton" parent="."]
+
+margin/left = 1311.0
+margin/top = 306.0
+margin/right = 1823.0
+margin/bottom = 818.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
 size_flags/vertical = 2
-modulate = Color( 0.9375, 0.88623, 0.88623, 1 )
+toggle_mode = false
+textures/normal = ExtResource( 7 )
+textures/pressed = ExtResource( 8 )
 
-[connection signal="pressed" from="RetryBtn" to="RetryBtn" method="_on_RetryBtn_pressed"]
+[node name="TextureButton1" type="TextureButton" parent="."]
 
-[connection signal="pressed" from="Menu" to="Menu" method="_on_Menu_pressed"]
+margin/left = 1315.0
+margin/top = 555.0
+margin/right = 1827.0
+margin/bottom = 1067.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+textures/normal = ExtResource( 9 )
+textures/pressed = ExtResource( 10 )
 
 

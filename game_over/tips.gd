@@ -6,7 +6,7 @@ var tips = ["To live longer, try to not die", "Not so bad for a looser", "More p
 
 func _ready():
 	randomize();
-	var index = rand_range(0, tips.size())
+	var index = randi() % tips.size()
 	var string = tips[index]
 	set_text(string);
 	pass
