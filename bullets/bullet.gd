@@ -2,7 +2,11 @@
 extends Node2D
 
 
+# private vars
 var hit = false
+var stick_target = true
+var is_free = false
+# public vars
 var min_speed = 200
 var max_speed = 200
 var speed = min_speed
@@ -35,12 +39,16 @@ func _ready():
 	
 
 func _process(delta):
-	if target != null:
+	if target != null and not is_free:
 		var dir = target - get_global_pos()
 		if (dir.length_squared() < 8):
-			set_pos(target)
+			if stick_target:
+				set_pos(target)
+			else:
+				is_free = true
 		else:
-			set_rot(atan2(get_pos().y - target.y, target.x - get_pos().x))
+			direction = atan2(get_pos().y - target.y, target.x - get_pos().x)
+			set_rot(direction)
 			translate(dir.normalized() * speed * delta)
 	else:
 		translate(Vector2(cos(direction), sin(-direction)) * speed * delta)

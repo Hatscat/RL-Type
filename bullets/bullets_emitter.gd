@@ -1,6 +1,7 @@
 
 extends Node2D
 
+
 export(String) var root_node_name = "Node2D"
 # bullets config
 export(int) var bullet_min_speed = 100
@@ -41,7 +42,7 @@ func _process(delta):
 			bullets[i].target = target_pts[i]
 
 
-func emit_bullets(bullets_nb, total_duration=0): # + intervales
+func emit_bullets(bullets_nb, total_duration=0, bullets_groups=null): # todo: + intervales
 	var Bullet = preload("res://bullets/bullet.tscn")
 	# shape points setup
 	var target_pts = null
