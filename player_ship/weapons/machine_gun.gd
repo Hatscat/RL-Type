@@ -4,8 +4,8 @@ extends Node2D
 var emmiter
 
 func _ready():
-	emmiter = get_node("Emmiter")
+	emmiter = get_parent().get_node("Emmiter")
 
 func shot():
-	emmiter.emit_bullets(10)
+	emmiter.emit_bullets(1)
 

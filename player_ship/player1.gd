@@ -3,15 +3,16 @@ extends Area2D
 
 # member variables here
 export var speed = 200
+export var max_life = 100
 
+var life = 0
 var screen_size
-var prev_shooting = false
-var killed = false
-
-
+var current_weapon
+var weapon_pos 
 
 func _process(delta):
 	
+	#need to take axis !
 	var motion = Vector2()
 	if Input.is_action_pressed("move_up"):
 		motion += Vector2(0, -1)
@@ -22,9 +23,8 @@ func _process(delta):
 	if Input.is_action_pressed("move_right"):
 		motion += Vector2(1, 0)
 	
-	
 	var pos = get_pos()
-	pos += motion*delta*speed*2
+	pos += motion*speed*delta
 	
 	if (pos.x < 0):
 		pos.x = 0
@@ -35,16 +35,26 @@ func _process(delta):
 	if (pos.y > screen_size.y):
 		pos.y = screen_size.y
 		
-	
-	
 	set_pos(pos)
-	
-
-
-
 
 func _ready():
+	life = max_life
+	weapon_pos = get_node("weapon_pos").get_pos()
+	screen_size = get_viewport().get_rect().size
+	
 	get_node("propulsion").get_node("anim").play("burn")
 	get_node("propulsion1").get_node("anim").play("burn")
-	screen_size = get_viewport().get_rect().size
+	
 	set_process(true)
+
+
+func _on_player_area_enter( area ):
+	if(area != current_weapon && area.has_method("is_weapon")):
+		if(current_weapon != null):
+			remove_child(current_weapon)
+			current_weapon.on_dropped()
+		
+		current_weapon = area
+		add_child(current_weapon)
+		current_weapon.on_picked()
+		current_weapon.set_pos(weapon_pos)

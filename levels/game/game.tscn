@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://levels/game/life_bar.gd" type="Script" id=1]
 [ext_resource path="res://levels/game/scoreHud.gd" type="Script" id=2]
 [ext_resource path="res://background/parallax_bg.tscn" type="PackedScene" id=3]
 [ext_resource path="res://player_ship/player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player_ship/weapons/weapon.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
 
@@ -13,7 +14,6 @@ layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="ProgressBar" type="ProgressBar" parent="HUD"]
 
@@ -71,5 +71,9 @@ script/script = ExtResource( 2 )
 [node name="parallax" parent="." instance=ExtResource( 3 )]
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
+
+[node name="Node2D" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 359.172, 297.476 )
 
 

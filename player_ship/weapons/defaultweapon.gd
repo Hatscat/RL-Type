@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 export var cooldown = 0
 var timer = 0
@@ -17,12 +17,16 @@ func _process(delta):
 		timer -= delta
 
 func _ready():
-	weapon = get_node("Weapon")
+	weapon = get_node("Behaviour")
 	
-func _on_picked():
+func on_picked():
 	set_process(true)
+	get_node("Icon").hide()
 
-func _on_droped():
+func on_droped():
 	set_process(false)
+	get_node("Icon").show()
 
+func is_weapon():
+	pass
 

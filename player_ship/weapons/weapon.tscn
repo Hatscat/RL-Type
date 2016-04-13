@@ -1,18 +1,50 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://player_ship/weapons/defaultweapon.gd" type="Script" id=1]
 [ext_resource path="res://player_ship/weapons/machine_gun.gd" type="Script" id=2]
 [ext_resource path="res://bullets/bullets_emitter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://bullets/bullet_ball.png" type="Texture" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Colider" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1.66217, -0, 0, 1.66217, 0, 0 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
 script/script = ExtResource( 1 )
 cooldown = 0
 
-[node name="Weapon" type="Sprite" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colider"]
+
+transform/scale = Vector2( 1.66217, 1.66217 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+[node name="Behaviour" type="Node2D" parent="Colider"]
 
 script/script = ExtResource( 2 )
 
-[node name="Emmiter" parent="." instance=ExtResource( 3 )]
+[node name="Emmiter" parent="Colider" instance=ExtResource( 3 )]
+
+bullet_sprite = ExtResource( 4 )
+bullet_scale = Vector2( 1, 1 )
+
+[node name="Icon" type="Sprite" parent="Colider"]
+
+transform/scale = Vector2( 0.04916, 0.04916 )
+texture = ExtResource( 5 )
 
 
