@@ -20,7 +20,7 @@ func _process(delta):
 		motion += Vector2(-2.25, 0)
 	if Input.is_action_pressed("move_right"):
 		motion += Vector2(1.5, 0)
-	var shooting = Input.is_action_pressed("shoot")
+	
 	
 	var pos = get_pos()
 	
@@ -33,11 +33,17 @@ func _process(delta):
 		pos.y = 0
 	if (pos.y > screen_size.y):
 		pos.y = screen_size.y
+		
+	
 	
 	set_pos(pos)
 	
 
 
+
+
 func _ready():
+	get_node("propulsion").get_node("anim").play("burn")
+	get_node("propulsion1").get_node("anim").play("burn")
 	screen_size = get_viewport().get_rect().size
 	set_process(true)

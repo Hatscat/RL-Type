@@ -13,6 +13,7 @@ layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="ProgressBar" type="ProgressBar" parent="HUD"]
 
