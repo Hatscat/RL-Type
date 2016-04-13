@@ -45,11 +45,8 @@ func _process(delta):
 	else:
 		translate(Vector2(cos(direction), sin(-direction)) * speed * delta)
 
-
 func _on_visibility_exit_screen():
-	print("good bye!")
 	queue_free()
-
 
 func _hit_something():
 	if (hit):
@@ -60,6 +57,7 @@ func _hit_something():
 
 
 func _on_shot_area_enter(area):
-	if (area.has_method("destroy")):
-		area.destroy()
-		_hit_something()
+	if (area.has_method("on_bullet_hit")):
+		area.on_bullet_hit()
+		
+	_hit_something()

@@ -10,12 +10,10 @@
 custom_solver_bias = 0.0
 points = Vector2Array( 3.27496, -19.407, 17.7891, -12.4612, 23.1854, 0.214706, 18.3474, 9.76511, -3.23782, 11.3279, -8.07588, 6.63951, -8.44804, -17.3232 )
 
-
 [sub_resource type="CircleShape2D" id=5]
 
 custom_solver_bias = 0.0
 radius = 10.0
-
 
 [sub_resource type="Animation" id=2]
 
@@ -70,6 +68,8 @@ transform/pos = Vector2( 0.396673, 0 )
 transform/scale = Vector2( 0.182537, 0.182537 )
 texture = ExtResource( 3 )
 vframes = 6
+frame = 5
+__meta__ = { "_editor_collapsed":true }
 
 [node name="anim" type="AnimationPlayer" parent="player/ship"]
 
