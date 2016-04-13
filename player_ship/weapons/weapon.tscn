@@ -24,7 +24,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 1 )
-cooldown = 0
+cooldown = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colider"]
 
@@ -39,8 +39,11 @@ script/script = ExtResource( 2 )
 
 [node name="Emmiter" parent="Colider" instance=ExtResource( 3 )]
 
+bullet_min_speed = 1000
+bullet_max_speed = 2000
 bullet_sprite = ExtResource( 4 )
-bullet_scale = Vector2( 1, 1 )
+bullet_color = Color( 0.867188, 0.854802, 0.0745239, 1 )
+bullet_scale = Vector2( 0.3, 0.3 )
 
 [node name="Icon" type="Sprite" parent="Colider"]
 

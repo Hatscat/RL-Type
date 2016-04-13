@@ -1,6 +1,6 @@
 extends Node2D
 
-export var cooldown = 0
+export(float) var cooldown = 0
 var timer = 0
 var canshoot = true
 var weapon
@@ -20,6 +20,7 @@ func _ready():
 	weapon = get_node("Behaviour")
 	
 func on_picked():
+	get_parent().remove_child(self)
 	set_process(true)
 	get_node("Icon").hide()
 

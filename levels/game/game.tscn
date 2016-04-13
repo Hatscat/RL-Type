@@ -34,7 +34,6 @@ range/exp_edit = false
 range/rounded = false
 percent/visible = true
 script/script = ExtResource( 1 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="Label" type="Label" parent="HUD/ProgressBar"]
 
