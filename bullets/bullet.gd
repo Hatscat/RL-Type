@@ -35,6 +35,7 @@ func _ready():
 		get_node("Area2D/Anim").seek(randf() * get_node("Area2D/Anim").get_animation(anim_name).get_length())
 		if anim_speed != null:
 			get_node("Area2D/Anim").set_speed(anim_speed)
+	get_node("Area2D").connect("area_enter", self, "_on_shot_area_enter")
 	set_process(true)
 	
 
