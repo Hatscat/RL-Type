@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://enemies/enemy_1/enemy_1_body.png" type="Texture" id=1]
-[ext_resource path="res://enemies/enemy_1/enemy_1_head.png" type="Texture" id=2]
+[ext_resource path="res://enemies/lamasticot/lamasticot_body.png" type="Texture" id=1]
+[ext_resource path="res://enemies/lamasticot/lamasticot_head.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
 
@@ -18,7 +18,7 @@ tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.5, 1 ), "transitions":Fl
 
 [node name="body" type="Sprite" parent="."]
 
-transform/pos = Vector2( 17.5159, 2.55226 )
+transform/pos = Vector2( 18.3919, 2.55226 )
 transform/rot = -10.1321
 transform/scale = Vector2( 0.136951, 0.136951 )
 texture = ExtResource( 1 )

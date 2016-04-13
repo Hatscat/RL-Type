@@ -10,7 +10,7 @@
 custom_solver_bias = 0.0
 points = Vector2Array( 3.27496, -19.407, 17.7891, -12.4612, 23.1854, 0.214706, 18.3474, 9.76511, -3.23782, 11.3279, -8.07588, 6.63951, -8.44804, -17.3232 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 
 resource/name = "shoot"
 length = 0.1
@@ -21,9 +21,8 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.1 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, 5 ] }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
-resource/name = "burn"
 length = 0.3
 loop = true
 step = 0.3
@@ -60,14 +59,13 @@ transform/pos = Vector2( 0.396673, 0 )
 transform/scale = Vector2( 0.182537, 0.182537 )
 texture = ExtResource( 3 )
 vframes = 6
-frame = 5
 
 [node name="anim" type="AnimationPlayer" parent="player/ship"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/shoot = SubResource( 3 )
+anims/shoot = SubResource( 2 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -96,7 +94,7 @@ hframes = 3
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/burn = SubResource( 2 )
+anims/burn = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -115,7 +113,7 @@ hframes = 3
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/burn = SubResource( 2 )
+anims/burn = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
