@@ -20,7 +20,7 @@ func _process(delta):
 		motion += Vector2(-2.25, 0)
 	if Input.is_action_pressed("move_right"):
 		motion += Vector2(1.5, 0)
-	var shooting = Input.is_action_pressed("shoot")
+	
 	
 	var pos = get_pos()
 	
@@ -35,15 +35,9 @@ func _process(delta):
 		pos.y = screen_size.y
 	
 	set_pos(pos)
-	shoot(shooting)
+	
 
-func shoot(shooting):
-	
-	if (shooting and not prev_shooting):
-		print ("shoot")
-	
-	
-	prev_shooting = shooting
+
 
 
 func _ready():

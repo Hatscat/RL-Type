@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://player_ship/player.gd" type="Script" id=1]
 [ext_resource path="res://player_ship/player1.gd" type="Script" id=2]
 [ext_resource path="res://player_ship/player.png" type="Texture" id=3]
+[ext_resource path="res://player_ship/weapons/weapon.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -40,6 +41,8 @@ build_mode = 0
 polygon = Vector2Array( -8.44804, -17.3232, -8.07588, 6.63951, -3.23782, 11.3279, 18.3474, 9.76511, 23.1854, 0.214706, 17.7891, -12.4612, 3.27496, -19.407 )
 shape_range = Vector2( 0, 0 )
 trigger = false
+
+[node name="DefaultWeapon" parent="player" instance=ExtResource( 4 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
