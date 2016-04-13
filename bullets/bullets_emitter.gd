@@ -5,7 +5,7 @@ export(String) var root_node_name = "Node2D"
 # bullets config
 export(int) var bullet_min_speed = 100
 export(int) var bullet_max_speed = 400
-export(float) var bullet_direction = 0
+export(float) var bullet_direction_deg = 0
 export(Texture) var bullet_sprite = preload("res://bullets/bullet_ball.png")
 export(Color, RGBA) var bullet_color = null
 export(Vector2) var bullet_scale = Vector2(1, 1)
@@ -13,19 +13,27 @@ export(String) var bullet_anim_name = null
 export(float) var bullet_anim_speed = 1
 # shape config
 export(int) var shape_speed = 0
-export(float) var shape_direction = 0
-# shape_anim_name #todo
+export(float) var shape_direction_deg = 0
+export(String) var shape_anim_name = null
+export(float) var shape_anim_speed = 1
 # private vars
 var shape = null
+var shape_direction
 var bullets = []
 
 
 func _ready():
+	shape = get_node("shape")
+	var anim = get_node("shape/anim")
+	if anim != null:
+		anim.play(shape_anim_name)
+		anim.set_speed(shape_anim_speed)
 	set_process(true)
 
 
 func _process(delta):
 	if shape != null:
+		shape_direction = deg2rad(shape_direction_deg)
 		shape.translate(Vector2(cos(shape_direction), sin(-shape_direction)) * shape_speed * delta)
 		var target_pts  = get_shape_pts(get_shape_polygons(), bullets.size())
 		for i in range(bullets.size()):
@@ -34,7 +42,6 @@ func _process(delta):
 
 func emit_bullets(bullets_nb, total_duration=0): # + intervales
 	var Bullet = preload("res://bullets/bullet.tscn")
-	shape = get_node("shape")
 	# shape points setup
 	var target_pts = null
 	if shape != null:
@@ -47,7 +54,7 @@ func emit_bullets(bullets_nb, total_duration=0): # + intervales
 		b.min_speed = bullet_min_speed
 		b.max_speed = bullet_max_speed
 		b.speed = b.max_speed
-		b.direction = bullet_direction
+		b.direction = deg2rad(bullet_direction_deg)
 		if target_pts != null:
 			b.target = target_pts[i]
 		b.tween_type = null #todo
@@ -64,7 +71,11 @@ func get_shape_polygons():
 		return null
 	var polygons = shape.get_polygon()
 	for i in range(polygons.size()):
-		polygons[i] = get_pos() + shape.get_pos() + (shape.get_offset() + polygons[i]) * shape.get_scale()
+		var poly_angle = atan2(polygons[i].y, polygons[i].x) + shape.get_rot()
+		var poly = Vector2(cos(poly_angle), sin(-poly_angle)) * polygons[i].length()
+		var offset_angle = atan2(shape.get_offset().y, shape.get_offset().x) - shape.get_rot()
+		var offset = Vector2(cos(offset_angle), sin(offset_angle)) * shape.get_offset().length()
+		polygons[i] = get_pos() + shape.get_pos() + ((poly + offset) * shape.get_scale())
 	return polygons
 
 

@@ -37,7 +37,7 @@ func _ready():
 func _process(delta):
 	if target != null:
 		var dir = target - get_global_pos()
-		if (dir.length_squared() < 2):
+		if (dir.length_squared() < 8):
 			set_pos(target)
 		else:
 			set_rot(atan2(get_pos().y - target.y, target.x - get_pos().x))
