@@ -12,22 +12,23 @@ export(Vector2) var bullet_scale = Vector2(1, 1)
 export(String) var bullet_anim_name = null
 export(float) var bullet_anim_speed = 1
 # shape config
+export(bool) var close_shape = false
 export(int) var shape_speed = 0
 export(float) var shape_direction_deg = 0
 export(String) var shape_anim_name = null
 export(float) var shape_anim_speed = 1
 # private vars
 var shape = null
+var shape_origin_pos
+var shape_anim
 var shape_direction
 var bullets = []
 
 
 func _ready():
 	shape = get_node("shape")
-	var anim = get_node("shape/anim")
-	if anim != null:
-		anim.play(shape_anim_name)
-		anim.set_speed(shape_anim_speed)
+	if shape != null:
+		shape_origin_pos = shape.get_pos()
 	set_process(true)
 
 
@@ -45,6 +46,12 @@ func emit_bullets(bullets_nb, total_duration=0): # + intervales
 	# shape points setup
 	var target_pts = null
 	if shape != null:
+		shape.set_pos(shape_origin_pos)
+		shape_anim = get_node("shape/anim")
+		if shape_anim != null:
+			shape_anim.play(shape_anim_name)
+			shape_anim.seek(0)
+			shape_anim.set_speed(shape_anim_speed)
 		target_pts = get_shape_pts(get_shape_polygons(), bullets_nb)
 	# bullets setup
 	for i in range(bullets_nb):
@@ -88,6 +95,8 @@ func get_shape_pts(polygons, points_nb):
 		var idx1 = 0
 		if idx < polygons.size() - 1:
 			idx1 = idx + 1
+		elif not close_shape:
+			idx1 = idx
 		pts.append(Vector2(lerp(polygons[idx].x, polygons[idx1].x, k), lerp(polygons[idx].y, polygons[idx1].y, k)))
 	return pts
 	
