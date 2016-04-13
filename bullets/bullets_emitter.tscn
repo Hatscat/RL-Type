@@ -10,6 +10,7 @@ root_node_name = "Node2D"
 bullet_min_speed = 200
 bullet_max_speed = 500
 bullet_direction_deg = 0
+bullet_stick_target = false
 bullet_sprite = ExtResource( 2 )
 bullet_color = null
 bullet_scale = Vector2( 1, 1 )

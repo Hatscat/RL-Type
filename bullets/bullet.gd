@@ -4,20 +4,21 @@ extends Node2D
 
 # private vars
 var hit = false
-var stick_target = true
 var is_free = false
 # public vars
 var min_speed = 200
 var max_speed = 200
-var speed = min_speed
+var speed = max_speed
 var direction = 0
 var target = null
+var stick_target = false
 var tween_type = null
 var anim_name = null
 var anim_speed = null
 var sprite = null
 var color = null
 var scale = null
+var emitter = null
 
 
 func _ready():
@@ -36,12 +37,13 @@ func _ready():
 		if anim_speed != null:
 			get_node("Area2D/Anim").set_speed(anim_speed)
 	set_process(true)
-	
+
 
 func _process(delta):
+	var sd = speed * delta
 	if target != null and not is_free:
 		var dir = target - get_global_pos()
-		if (dir.length_squared() < 8):
+		if (dir.length_squared() <= sd * sd):
 			if stick_target:
 				set_pos(target)
 			else:
@@ -49,15 +51,19 @@ func _process(delta):
 		else:
 			direction = atan2(get_pos().y - target.y, target.x - get_pos().x)
 			set_rot(direction)
-			translate(dir.normalized() * speed * delta)
+			translate(dir.normalized() * sd)
 	else:
-		translate(Vector2(cos(direction), sin(-direction)) * speed * delta)
+		translate(Vector2(cos(direction), sin(-direction)) * sd)
+
 
 func _on_visibility_exit_screen():
+	if emitter != null and emitter.has_method("remove_bullet"):
+		emitter.remove_bullet(self)
 	queue_free()
 
+
 func _hit_something():
-	if (hit):
+	if hit:
 		return
 	hit = true
 	set_process(false)
@@ -65,7 +71,6 @@ func _hit_something():
 
 
 func _on_shot_area_enter(area):
-	if (area.has_method("on_bullet_hit")):
+	if area != null and area.has_method("on_bullet_hit"):
 		area.on_bullet_hit()
-		
 	_hit_something()
