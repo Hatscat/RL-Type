@@ -46,6 +46,7 @@ angular_damp = 1.0
 
 [node name="Sprite" type="Sprite" parent="Area2D"]
 
+transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="Area2D"]
