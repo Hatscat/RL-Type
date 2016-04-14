@@ -44,15 +44,15 @@ transform/pos = Vector2( -4.50741, 0.643917 )
 
 [node name="body" type="Sprite" parent="."]
 
-transform/pos = Vector2( 18.3919, 2.31443 )
+transform/pos = Vector2( 18.1773, 2.31443 )
 transform/rot = -19.0661
 transform/scale = Vector2( 0.136951, 0.136951 )
 texture = ExtResource( 1 )
 
 [node name="head" type="Sprite" parent="body"]
 
-transform/pos = Vector2( -124.803, 81.0215 )
-transform/rot = 0.92337
+transform/pos = Vector2( -125.315, 79.5402 )
+transform/rot = 15.6616
 transform/scale = Vector2( 0.828139, 0.828139 )
 texture = ExtResource( 2 )
 offset = Vector2( -74.8955, -122.318 )
@@ -71,12 +71,11 @@ autoplay = "enemy_1"
 [node name="propulsion" type="Sprite" parent="body"]
 
 visibility/behind_parent = true
-transform/pos = Vector2( 168.45, -45.0077 )
+transform/pos = Vector2( 169.419, -47.0009 )
 transform/rot = 20.6207
 transform/scale = Vector2( 1.50686, 2.48684 )
 texture = ExtResource( 3 )
 vframes = 6
-frame = 4
 
 [node name="anim" type="AnimationPlayer" parent="body/propulsion"]
 
