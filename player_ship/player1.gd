@@ -15,11 +15,19 @@ func _process(delta):
 	var motion = Vector2()
 	if(Input.get_joy_axis(0, 1) > 0.15 || Input.get_joy_axis(0, 1) < -0.15):
 		motion += Vector2(0, Input.get_joy_axis(0, 1))
+		get_node("propulsion").set_rot(deg2rad(0));
 	else:
 		if(Input.is_action_pressed("move_up")):
 			motion += Vector2(0, -1)
-		elif(Input.is_action_pressed("move_down")):
+			get_node("propulsion").set_rot(deg2rad(45))
+			get_node("propulsion1").set_rot(deg2rad(45))
+		else:
+			get_node("propulsion").set_rot(deg2rad(0))
+			get_node("propulsion1").set_rot(deg2rad(0))
+		if(Input.is_action_pressed("move_down")):
 			motion += Vector2(0, 1)
+			get_node("propulsion").set_rot(deg2rad(-45))
+			get_node("propulsion1").set_rot(deg2rad(-45))
 	if(Input.get_joy_axis(0, 0) > 0.15 || Input.get_joy_axis(0, 0) < -0.15):
 		motion += Vector2(Input.get_joy_axis(0, 0), 0)
 	else:
