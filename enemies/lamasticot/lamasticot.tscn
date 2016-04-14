@@ -1,32 +1,46 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://enemies/lamasticot/lamasticot_body.png" type="Texture" id=1]
 [ext_resource path="res://enemies/lamasticot/lamasticot_head.png" type="Texture" id=2]
+[ext_resource path="res://enemies/propulsion/propulsion_enemy.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 
 resource/name = "enemy_1"
-length = 1.0
-loop = false
-step = 0.1
+length = 3.0
+loop = true
+step = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:transform/rot")
 tracks/0/interp = 1
-tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.5, 1 ), "transitions":FloatArray( 1, 1, 1 ), "values":[ 21.1971, 0.0, 21.2 ] }
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 1.5, 3 ), "transitions":FloatArray( 1, 1, 1 ), "values":[ 21.1971, 0.0, 21.2 ] }
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "boost"
+length = 0.1
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.1 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, 5 ] }
 
 [node name="Node2D" type="Node2D"]
 
+transform/pos = Vector2( -4.50741, 0.643917 )
+
 [node name="body" type="Sprite" parent="."]
 
-transform/pos = Vector2( 18.3919, 2.55226 )
-transform/rot = -10.1321
+transform/pos = Vector2( 18.3919, 2.31443 )
+transform/rot = -19.0661
 transform/scale = Vector2( 0.136951, 0.136951 )
 texture = ExtResource( 1 )
 
 [node name="head" type="Sprite" parent="body"]
 
-transform/pos = Vector2( -147.587, 79.142 )
-transform/rot = 21.2
+transform/pos = Vector2( -124.314, 80.2309 )
+transform/rot = 17.0397
 transform/scale = Vector2( 1.13271, 1.13271 )
 texture = ExtResource( 2 )
 offset = Vector2( -74.8955, -122.318 )
@@ -41,5 +55,24 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = "enemy_1"
+
+[node name="propulsion" type="Sprite" parent="body"]
+
+transform/pos = Vector2( 270.292, -128.14 )
+transform/rot = 24.4556
+transform/scale = Vector2( 1.32283, 1.32283 )
+texture = ExtResource( 3 )
+vframes = 6
+
+[node name="anim" type="AnimationPlayer" parent="body/propulsion"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/boost = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
 
 
