@@ -1,55 +1,32 @@
-
 extends Node2D
 
-export(int) var max_life = 100
-export(int) var min_speed = 200
-export(int) var max_speed = 200
-export(int) var explosion_damage = 5
-var life = max_life
+export(float) var cooldown = 0
+export(float) var bullets_nb = 1
+export(float) var total_time = 0
 
-var direction = 0
-var speed = max_speed
-var target = null
-var stick_target = false
-var is_free = false
+export(String) var patern_name 
+var timer = 0
+var canshoot = true
+var weapon
+
+func _process(delta):
+	if !get_parent().is_active:
+		return
+	if canshoot:
+		weapon.emit_bullets(bullets_nb, total_time)
+		canshoot = false
+		timer = cooldown
+		
+	if(timer <= 0):
+		canshoot = true
+	else:
+		timer -= delta
 
 func _ready():
-	get_node("Area2D").connect("area_enter", self, "on_area_enter")
-	get_node("VisibilityNotifier2D").connect("exit_screen", self, "_on_visibility_exit_screen")
+	weapon = get_node(patern_name + "/bullets_emitter")
 	set_process(true)
-	
-func _process(delta):
-	if target != null && !is_free:
-		var dir = target - get_global_pos()
-		if (dir.length_squared() <= sd * sd):
-			if stick_target:
-				set_pos(target)
-			else:
-				is_free = true
-		else:
-			direction = atan2(get_pos().y - target.y, target.x - get_pos().x)
-			translate(dir.normalized() * sd)
-	else:
-		translate(Vector2(cos(direction), sin(-direction)) * sd)
 
-func explode():
-	#TODO anim
-	set_process(false)
-	hide()
-	
-func on_bullet_hit(damage):
-	life -= damage
-	if(life <= 0):
-		explode()
-
-func on_area_enter(area):
-	if(area.has_method("is_player")):
-		explode()
-	if(area.has_method("on_enemy_hit")):
-		area.on_enemy_hit(explosion_damage)
-
-func _on_visibility_exit_screen():
-	queue_free()
-
-func is_enemy():
+func is_weapon():
 	pass
+
+

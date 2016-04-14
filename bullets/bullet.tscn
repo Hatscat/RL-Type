@@ -40,7 +40,14 @@ tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.3, 0.9 ), "transitions":
 [node name="Node2D" type="Node2D"]
 
 transform/scale = Vector2( 0.5, 0.5 )
+z/z = -1
 script/script = ExtResource( 1 )
+damages = 1
+max_speed = 200
+is_enemy = false
+max_life = 10
+anim_name = null
+rotate_to_target = true
 
 [node name="Area2D" type="Area2D" parent="."]
 

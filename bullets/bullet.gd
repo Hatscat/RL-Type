@@ -3,28 +3,37 @@ extends Node2D
 
 
 # private vars
-var hit = false
 var is_free = false
 var is_active = true
 # public vars
 export var damages = 1
 export var max_speed = 200
-export var sender = "is_enemy"
+export var is_enemy = false
+export var max_life = 10
+export(String) var anim_name = null
+export(bool) var rotate_to_target = true
 var min_speed = 200
 var speed = 0
 var direction = 0
 var target = null
 var stick_target = false
 var tween_type = null
-var anim_name = null
 var anim_speed = null
 var sprite = null
 var color = null
 var scale = null
 var emitter = null
+var life = 0
+var sender
 
 func _ready():
+	life = max_life
 	speed = max_speed
+	if(is_enemy):
+		sender = "is_enemy"
+	else:
+		sender = "is_player"
+	
 	set_rot(direction)
 	if sprite != null:
 		get_node("Area2D/Sprite").set_texture(sprite)
@@ -34,13 +43,14 @@ func _ready():
 		set_scale(scale)
 	if tween_type != null:
 		pass #todo
-	if anim_name != null:
+	if anim_name != null && get_node("Area2D/Anim") != null && get_node("Area2D/Anim").get_animation(anim_name) != null:
 		get_node("Area2D/Anim").play(anim_name)
 		get_node("Area2D/Anim").seek(randf() * get_node("Area2D/Anim").get_animation(anim_name).get_length())
 		if anim_speed != null:
 			get_node("Area2D/Anim").set_speed(anim_speed)
-	get_node("Area2D").connect("area_enter", self, "_on_shot_area_enter")
 	set_process(true)
+	get_node("Area2D").connect("area_enter", self, "_on_area_enter")
+
 
 
 func _process(delta):
@@ -54,11 +64,11 @@ func _process(delta):
 				is_free = true
 		else:
 			direction = atan2(get_pos().y - target.y, target.x - get_pos().x)
-			set_rot(direction)
 			translate(dir.normalized() * sd)
+			if rotate_to_target:
+				set_rot(direction)
 	else:
 		translate(Vector2(cos(direction), sin(-direction)) * sd)
-
 
 func _on_visibility_exit_screen():
 	if emitter != null and emitter.has_method("remove_bullet"):
@@ -66,25 +76,32 @@ func _on_visibility_exit_screen():
 	queue_free()
 
 
-func _hit_something():
-	if hit || !is_active:
-		return
-	hit = true
+func explode():
+	is_active = false
+	queue_free()
 	set_process(false)
-	get_node("Area2D/Anim").play("explode")
+	#get_node("Area2D/Anim").play("explode")
 
 
-func _on_shot_area_enter(area):
-	if hit or !is_active or area.has_method("is_bullet") or area.has_method("is_weapon") or area.has_method(sender):
+func _on_area_enter(area):
+	if (!is_active || area.has_method("is_weapon") || area.has_method("is_bullet") || area.has_method(sender) ) :
 		return
+
 	if area.has_method("on_bullet_hit"):
 		area.on_bullet_hit(damages)
-	_hit_something()
 
-func set_active(isActive):
-	if isActive:
-		hide()
-	else: 
+	take_damage(life)
+
+func set_active(_bool):
+	if _bool:
 		show()
-	set_process(isActive)
-	is_active = isActive
+	else: 
+		hide()
+	
+	set_process(_bool)
+	is_active = _bool
+	
+func take_damage(damage):
+	life -= damage
+	if(is_active && life <= 0):
+		explode()

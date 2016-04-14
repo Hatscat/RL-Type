@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://levels/game/life-bar_empty.png" type="Texture" id=1]
+[ext_resource path="res://levels/game/life-bar_filler.png" type="Texture" id=2]
+[ext_resource path="res://levels/game/life_bar.gd" type="Script" id=3]
+[ext_resource path="res://levels/game/hud.fnt" type="Font" id=4]
+[ext_resource path="res://levels/game/scoreHud.gd" type="Script" id=5]
+
+[node name="HUD" type="CanvasLayer"]
+
+layer = 0
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+
+visibility/opacity = 0.75
+margin/left = 48.0
+margin/top = -32.0
+margin/right = 560.0
+margin/bottom = 480.0
+rect/scale = Vector2( 0.75, 0.75 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 50.0
+range/exp_edit = true
+range/rounded = true
+texture/under = ExtResource( 1 )
+texture/over = null
+texture/progress = ExtResource( 2 )
+radial_fill/fill_degrees = 108.3
+radial_fill/center_offset = Vector2( 0, 0 )
+script/script = ExtResource( 3 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="Label" type="Label" parent="TextureProgress"]
+
+margin/left = 21.0
+margin/top = 105.0
+margin/right = 181.0
+margin/bottom = 165.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 4 )
+text = "LIFE:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label" type="Label" parent="."]
+
+visibility/opacity = 0.75
+anchor/left = 1
+anchor/right = 1
+margin/left = 536.0
+margin/top = 54.0
+margin/right = 32.0
+margin/bottom = 112.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 4 )
+text = "SCORE:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 5 )
+
+
