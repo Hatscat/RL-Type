@@ -13,6 +13,12 @@ export(int) var shape_speed = 0
 export(float) var shape_direction_deg = 0
 export(String) var shape_anim_name = null
 export(float) var shape_anim_speed = 1
+
+#autoplay
+export(bool) var is_auto_play = false
+export(int) var auto_bullet_nb
+export(float) var auto_time_bullet
+
 # private vars
 var Bullet
 var shape = null
@@ -32,6 +38,9 @@ func _ready():
 		shape_origin_pos = shape.get_pos()
 		shape_direction = deg2rad(shape_direction_deg)
 	set_process(true)
+	
+	if is_auto_play:
+		emit_bullets(auto_bullet_nb, auto_time_bullet)
 
 
 func _process(delta):
@@ -39,8 +48,9 @@ func _process(delta):
 		shape.translate(Vector2(cos(shape_direction), sin(-shape_direction)) * shape_speed * delta)
 		var target_pts = get_shape_pts(get_shape_polygons(), bullets.size())
 		for i in range(bullets.size()):
-			if bullets[i] != null:
-				bullets[i].target = target_pts[i]
+			var ref = bullets[i].get_ref()
+			if ref:
+				ref.target = target_pts[i]
 
 
 func emit_bullets(bullets_nb, total_duration=0, bullets_groups=null): # todo: + intervales
@@ -78,15 +88,16 @@ func emit_bullets(bullets_nb, total_duration=0, bullets_groups=null): # todo: + 
 func spawn_bullet(Bullet, bullets_groups, delay=0, idx=0, target_pts=null, target_idx=0):
 	for i in range(bullets_groups[idx]):
 		var b = Bullet.duplicate()
-		bullets.append(b)
+		bullets.append(weakref(b))
 		b.set_pos(get_global_pos())
+		b.set_active(true)
 		b.direction = deg2rad(bullet_direction_deg)
 		if target_pts != null:
 			b.target = target_pts[target_idx]
 			b.stick_target = bullet_stick_target
 		b.tween_type = null #todo
 		b.emitter = self
-		get_tree().get_root().get_node(root_node_name).add_child(b)
+		get_tree().get_root().get_node(root_node_name).call_deferred("add_child",b)
 		target_idx += 1
 	idx += 1
 	if idx < bullets_groups.size():
