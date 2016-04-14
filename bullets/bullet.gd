@@ -76,6 +76,6 @@ func _on_shot_area_enter(area):
 	if hit or area.has_method("is_bullet") or area.has_method("is_weapon"):
 		return
 	if area.has_method("on_bullet_hit"):
-		area.on_bullet_hit()
+		area.on_bullet_hit(damages)
 	_hit_something()
 	

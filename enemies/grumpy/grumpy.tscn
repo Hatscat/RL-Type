@@ -25,6 +25,7 @@ script/script = ExtResource( 1 )
 max_life = 100
 min_speed = 200
 max_speed = 200
+explosion_damage = 5
 
 [node name="mouse" type="Sprite" parent="."]
 
@@ -63,5 +64,11 @@ transform/scale = Vector2( 17.9069, 17.9069 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+transform/pos = Vector2( 12.7206, 19.552 )
+transform/scale = Vector2( 18.1257, 17.6564 )
+rect = Rect2( -10, -10, 20, 20 )
 
 

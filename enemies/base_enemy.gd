@@ -4,6 +4,7 @@ extends Node2D
 export(int) var max_life = 100
 export(int) var min_speed = 200
 export(int) var max_speed = 200
+export(int) var explosion_damage = 5
 var life = max_life
 
 var direction = 0
@@ -14,6 +15,7 @@ var is_free = false
 
 func _ready():
 	get_node("Area2D").connect("area_enter", self, "on_area_enter")
+	get_node("VisibilityNotifier2D").connect("exit_screen", self, "_on_visibility_exit_screen")
 	set_process(true)
 	
 func _process(delta):
@@ -44,9 +46,8 @@ func on_area_enter(area):
 	if(area.has_method("is_player")):
 		explode()
 	if(area.has_method("on_enemy_hit")):
-		area.on_enemy_hit()
+		area.on_enemy_hit(explosion_damage)
 
-#TODO bind signal
 func _on_visibility_exit_screen():
 	queue_free()
 
