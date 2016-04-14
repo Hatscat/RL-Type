@@ -45,7 +45,7 @@ func _process(delta):
 	var sd = speed * delta
 	if target != null and not is_free:
 		var dir = target - get_global_pos()
-		if (dir.length_squared() <= sd * sd):
+		if dir.length_squared() <= sd * sd:
 			if stick_target:
 				set_pos(target)
 			else:
