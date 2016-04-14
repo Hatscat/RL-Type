@@ -2,7 +2,7 @@ extends Node
 
 var score = 0
 var enemy_types_nb = 3
-var player_max_hp = 100
+var player = null
 
 func add_score(additional_score):
 	score += additional_score
