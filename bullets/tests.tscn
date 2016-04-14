@@ -115,6 +115,7 @@ bullet_scale = Vector2( 0.2, 0.2 )
 
 [node name="shape" type="Polygon2D" parent="bullets_emitter_2"]
 
+visibility/visible = false
 transform/pos = Vector2( 141.277, -120.283 )
 transform/rot = -49.1614
 transform/scale = Vector2( 2, 1 )

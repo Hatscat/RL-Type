@@ -39,7 +39,7 @@ func _ready():
 
 
 func _process(delta):
-	if shape != null and shape_speed > 0:
+	if shape != null:
 		shape.translate(Vector2(cos(shape_direction), sin(-shape_direction)) * shape_speed * delta)
 		var target_pts = get_shape_pts(get_shape_polygons(), bullets.size())
 		for i in range(bullets.size()):
