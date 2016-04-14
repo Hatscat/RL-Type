@@ -65,8 +65,16 @@ func _on_player_area_enter( area ):
 		add_child(current_weapon)
 		current_weapon.set_pos(weapon_pos)
 		
-func on_bullet_hit():
-	pass
+func on_bullet_hit(damage):
+	life -= damage
+	check_life()
 	
-func on_enemy_hit():
-	pass
+func on_enemy_hit(damage):
+	life -= damage
+	check_life()
+	
+func check_life():
+	if(life < 0):
+		#get node explosion . play
+		set_process(false)
+		hide()
