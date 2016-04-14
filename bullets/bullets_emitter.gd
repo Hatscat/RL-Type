@@ -4,6 +4,7 @@ extends Node2D
 
 export(String) var root_node_name = "Node2D"
 # bullets config
+export(int) var bullet_damages = 1
 export(int) var bullet_min_speed = 100
 export(int) var bullet_max_speed = 400
 export(float) var bullet_direction_deg = 0
@@ -25,10 +26,12 @@ var shape_origin_pos
 var shape_anim
 var shape_direction
 var bullets = []
+var timer
 
 
 func _ready():
 	shape = get_node("shape")
+	timer = get_node("timer")
 	if shape != null:
 		shape_origin_pos = shape.get_pos()
 	set_process(true)
@@ -46,6 +49,16 @@ func _process(delta):
 
 func emit_bullets(bullets_nb, total_duration=0, bullets_groups=null): # todo: + intervales
 	var Bullet = preload("res://bullets/bullet.tscn")
+	var delay = 0
+	if total_duration > 0:
+		total_duration += 0.0
+		if bullets_groups != null:
+			delay = total_duration / bullets_groups.size()
+		else:
+			delay = total_duration / bullets_nb
+		print(delay)
+		timer.set_wait_time(delay)
+		timer.start()
 	# shape points setup
 	var target_pts = null
 	if shape != null:
@@ -61,6 +74,7 @@ func emit_bullets(bullets_nb, total_duration=0, bullets_groups=null): # todo: + 
 		var b = Bullet.instance()
 		bullets.append(b)
 		b.set_pos(get_global_pos())
+		b.damages = bullet_damages
 		b.min_speed = bullet_min_speed
 		b.max_speed = bullet_max_speed
 		b.speed = b.max_speed
@@ -68,6 +82,8 @@ func emit_bullets(bullets_nb, total_duration=0, bullets_groups=null): # todo: + 
 		if target_pts != null:
 			b.target = target_pts[i]
 			b.stick_target = bullet_stick_target
+		#print(i)
+		#print(b.target)
 		b.tween_type = null #todo
 		b.anim_name = bullet_anim_name
 		b.anim_speed = bullet_anim_speed
@@ -76,7 +92,12 @@ func emit_bullets(bullets_nb, total_duration=0, bullets_groups=null): # todo: + 
 		b.scale = bullet_scale
 		b.emitter = self
 		get_tree().get_root().get_node(root_node_name).add_child(b)
+		if delay > 0:
+			yield(timer, "timeout")
+			#timer.start()
 
+func emit_one_bullet():
+	pass
 
 func get_shape_polygons():
 	if shape == null:
