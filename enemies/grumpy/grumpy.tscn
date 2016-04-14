@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://bullets/bullet.gd" type="Script" id=1]
 [ext_resource path="res://enemies/grumpy/grumpy_mouse_sprite.png" type="Texture" id=2]
 [ext_resource path="res://enemies/is_enemy.gd" type="Script" id=3]
-[ext_resource path="res://enemies/base_enemy.gd" type="Script" id=4]
-[ext_resource path="res://bullets/patterns/test_pattern.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 
@@ -28,7 +26,7 @@ script/script = ExtResource( 1 )
 damages = 5
 max_speed = 0
 is_enemy = true
-max_life = 5
+max_life = 2
 anim_name = null
 rotate_to_target = false
 
@@ -76,19 +74,4 @@ transform/pos = Vector2( 12.7206, 19.552 )
 transform/scale = Vector2( 18.1257, 17.6564 )
 rect = Rect2( -10, -10, 20, 20 )
 
-[node name="Weapon" type="Node2D" parent="."]
 
-transform/pos = Vector2( -72.8842, 126.966 )
-script/script = ExtResource( 4 )
-__meta__ = { "_editor_collapsed":true }
-cooldown = 3.0
-bullets_nb = 3.0
-total_time = 1.0
-patern_name = "Node2D"
-
-[node name="Node2D" parent="Weapon" instance=ExtResource( 5 )]
-
-transform/pos = Vector2( 21.2205, -19.4522 )
-
-
-[editable path="Weapon/Node2D"]

@@ -52,7 +52,6 @@ func _ready():
 	get_node("Area2D").connect("area_enter", self, "_on_area_enter")
 
 
-
 func _process(delta):
 	var sd = speed * delta
 	if target != null and not is_free:
@@ -103,5 +102,6 @@ func set_active(_bool):
 	
 func take_damage(damage):
 	life -= damage
-	if(is_active && life <= 0):
+
+	if(life <= 0):
 		explode()

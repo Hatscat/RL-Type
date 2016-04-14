@@ -24,5 +24,9 @@ transform/pos = Vector2( 328.769, 595.296 )
 
 [node name="Node2D" parent="." instance=ExtResource( 5 )]
 
+[node name="grumpy" parent="bullets_emitter/Node2D"]
+
+transform/pos = Vector2( -44.2097, -666.682 )
+
 
 [editable path="Node2D"]

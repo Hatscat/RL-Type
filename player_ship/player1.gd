@@ -75,8 +75,6 @@ func _on_player_area_enter( area ):
 		
 func on_bullet_hit(damage):
 	life -= damage
-	print("aie")
-	print(damage)
 	get_node("/root/events_emitter").emit_signal("player_hit", life)
 	check_life()
 	
