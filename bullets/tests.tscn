@@ -72,14 +72,14 @@ bullet_scale = Vector2( 0.5, 0.5 )
 bullet_anim_name = "sin"
 bullet_anim_speed = 5.0
 close_shape = true
-shape_speed = 50
-shape_direction_deg = 170.0
+shape_speed = 30
+shape_direction_deg = 155.0
 shape_anim_name = "polygons"
 
 [node name="shape" type="Polygon2D" parent="bullets_emitter_1"]
 
 visibility/visible = false
-transform/pos = Vector2( -146.518, 144.573 )
+transform/pos = Vector2( -233.259, 211.467 )
 transform/rot = 22.8198
 transform/scale = Vector2( 10.3732, 6.7515 )
 polygon = Vector2Array( -4.22583, 0.899716, -20.1506, -3.87287, -3.92776, -2.38962, -3.47407, -21.9465, -0.148591, -3.49472, 19.0398, -1.26285, 1.11371, 2.53424, 0.824712, 18.645 )
@@ -112,7 +112,6 @@ autoplay = ""
 transform/pos = Vector2( 12.2434, 575.441 )
 bullet_color = Color( 1, 0, 0, 1 )
 bullet_scale = Vector2( 0.2, 0.2 )
-close_shape = true
 
 [node name="shape" type="Polygon2D" parent="bullets_emitter_2"]
 
