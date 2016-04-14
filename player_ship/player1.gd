@@ -12,7 +12,6 @@ var weapon_pos
 
 func _process(delta):
 	
-	#need to take axis !
 	var motion = Vector2()
 	if(Input.get_joy_axis(0, 1) > 0.15 || Input.get_joy_axis(0, 1) < -0.15):
 		motion += Vector2(0, Input.get_joy_axis(0, 1))
@@ -67,4 +66,7 @@ func _on_player_area_enter( area ):
 		current_weapon.set_pos(weapon_pos)
 		
 func on_bullet_hit():
+	pass
+	
+func on_enemy_hit():
 	pass
