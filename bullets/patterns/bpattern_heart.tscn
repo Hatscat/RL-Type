@@ -23,7 +23,6 @@ bullet_sprite = ExtResource( 2 )
 bullet_color = Color( 0.898438, 0.0526428, 0.786105, 1 )
 bullet_scale = Vector2( 0.3, 0.3 )
 close_shape = true
-shape_speed = 1
 shape_direction_deg = 180.0
 shape_anim_name = "heart"
 

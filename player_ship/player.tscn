@@ -153,16 +153,16 @@ autoplay = ""
 transform/pos = Vector2( 35.6079, 15.2637 )
 transform/scale = Vector2( 0.150697, 0.159555 )
 
-[node name="Sprite" type="Sprite" parent="player"]
+[node name="fire" type="Sprite" parent="player"]
 
 visibility/behind_parent = true
 transform/pos = Vector2( 23.6328, 17.3962 )
 transform/scale = Vector2( 0.096401, 0.0964009 )
 texture = ExtResource( 5 )
 vframes = 10
-__meta__ = { "_editor_collapsed":true }
+frame = 8
 
-[node name="anim" type="AnimationPlayer" parent="player/Sprite"]
+[node name="anim" type="AnimationPlayer" parent="player/fire"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
@@ -175,7 +175,7 @@ autoplay = ""
 
 [node name="explosion" type="Sprite" parent="player"]
 
-transform/pos = Vector2( -6.65445, -6.94932 )
+transform/pos = Vector2( 0.0836463, -8.45668 )
 transform/scale = Vector2( 2.05257, 2.05257 )
 texture = ExtResource( 6 )
 vframes = 3

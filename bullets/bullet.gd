@@ -5,11 +5,13 @@ extends Node2D
 # private vars
 var hit = false
 var is_free = false
+var is_active = true
 # public vars
-var damages = 1
+export var damages = 1
+export var max_speed = 200
+export var sender = "is_enemy"
 var min_speed = 200
-var max_speed = 200
-var speed = max_speed
+var speed = 0
 var direction = 0
 var target = null
 var stick_target = false
@@ -21,8 +23,8 @@ var color = null
 var scale = null
 var emitter = null
 
-
 func _ready():
+	speed = max_speed
 	set_rot(direction)
 	if sprite != null:
 		get_node("Area2D/Sprite").set_texture(sprite)
@@ -65,7 +67,7 @@ func _on_visibility_exit_screen():
 
 
 func _hit_something():
-	if hit:
+	if hit || !is_active:
 		return
 	hit = true
 	set_process(false)
@@ -73,9 +75,16 @@ func _hit_something():
 
 
 func _on_shot_area_enter(area):
-	if hit or area.has_method("is_bullet") or area.has_method("is_weapon"):
+	if hit or !is_active or area.has_method("is_bullet") or area.has_method("is_weapon") or area.has_method(sender):
 		return
 	if area.has_method("on_bullet_hit"):
 		area.on_bullet_hit(damages)
 	_hit_something()
-	
+
+func set_active(isActive):
+	if isActive:
+		hide()
+	else: 
+		show()
+	set_process(isActive)
+	is_active = isActive
