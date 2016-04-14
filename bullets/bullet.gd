@@ -6,6 +6,7 @@ extends Node2D
 var hit = false
 var is_free = false
 # public vars
+var damages = 1
 var min_speed = 200
 var max_speed = 200
 var speed = max_speed

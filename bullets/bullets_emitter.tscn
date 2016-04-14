@@ -3,10 +3,11 @@
 [ext_resource path="res://bullets/bullets_emitter.gd" type="Script" id=1]
 [ext_resource path="res://bullets/bullet_ball.png" type="Texture" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="bullets_emitter" type="Node2D"]
 
 script/script = ExtResource( 1 )
 root_node_name = "Node2D"
+bullet_damages = 100
 bullet_min_speed = 200
 bullet_max_speed = 500
 bullet_direction_deg = 0
@@ -21,5 +22,12 @@ shape_speed = 0
 shape_direction_deg = 0
 shape_anim_name = null
 shape_anim_speed = 1
+
+[node name="timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
 
 

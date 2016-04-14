@@ -65,6 +65,7 @@ script/script = ExtResource( 1 )
 [node name="bullets_emitter_1" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 972.914, 69.5918 )
+bullet_max_speed = 600
 bullet_stick_target = true
 bullet_color = Color( 0.0546875, 1, 0, 1 )
 bullet_scale = Vector2( 0.5, 0.5 )
@@ -73,10 +74,11 @@ bullet_anim_speed = 5.0
 close_shape = true
 shape_speed = 50
 shape_direction_deg = 170.0
-shape_anim_name = "complex"
+shape_anim_name = "polygons"
 
 [node name="shape" type="Polygon2D" parent="bullets_emitter_1"]
 
+visibility/visible = false
 transform/pos = Vector2( -146.518, 144.573 )
 transform/rot = 22.8198
 transform/scale = Vector2( 10.3732, 6.7515 )
@@ -110,6 +112,7 @@ autoplay = ""
 transform/pos = Vector2( 12.2434, 575.441 )
 bullet_color = Color( 1, 0, 0, 1 )
 bullet_scale = Vector2( 0.2, 0.2 )
+close_shape = true
 
 [node name="shape" type="Polygon2D" parent="bullets_emitter_2"]
 
@@ -126,5 +129,12 @@ texture/scale = Vector2( 1, 1 )
 texture/rotation = 0.0
 invert/enable = false
 invert/border = 100.0
+
+[node name="bullets_emitter_3" parent="." instance=ExtResource( 2 )]
+
+bullet_damages = 1
+bullet_direction_deg = 330.0
+bullet_color = Color( 0, 0.441132, 0.957031, 1 )
+bullet_scale = Vector2( 0.4, 0.2 )
 
 
