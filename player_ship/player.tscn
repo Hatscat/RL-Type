@@ -75,7 +75,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 2 )
 speed = 400
-max_life = 100
+max_life = 1
 
 [node name="ship" type="Sprite" parent="player"]
 

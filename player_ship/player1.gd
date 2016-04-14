@@ -55,10 +55,10 @@ func _ready():
 	life = max_life
 	weapon_pos = get_node("weapon_pos").get_pos()
 	screen_size = get_viewport().get_rect().size
-	
 	get_node("propulsion").get_node("anim").play("burn")
 	get_node("propulsion1").get_node("anim").play("burn")
 	
+	get_node("/root/game_data").player = self
 	set_process(true)
 
 
@@ -75,14 +75,16 @@ func _on_player_area_enter( area ):
 		
 func on_bullet_hit(damage):
 	life -= damage
-	get_node("/root/events_emitter").emit_signal("player_hit", life)
+	get_node("/root/events_emitter").emit_signal("player_hit", damage)
 	check_life()
 	
 func check_life():
-	if(life < 0):
+	if(life <= 0):
+		get_node("/root/events_emitter").emit_signal("player_death")
 		#get node explosion . play
 		set_process(false)
 		hide()
+		life = 9000 #to prevent new death (yes this is ugly)
 
 func is_player():
 	pass

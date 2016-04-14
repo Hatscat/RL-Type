@@ -12,7 +12,6 @@ layer = 0
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="TextureProgress" type="TextureProgress" parent="."]
 
@@ -27,12 +26,12 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 range/min = 0.0
-range/max = 100.0
+range/max = 1.0
 range/step = 1.0
 range/page = 0.0
-range/value = 50.0
-range/exp_edit = true
-range/rounded = true
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
 texture/under = ExtResource( 1 )
 texture/over = null
 texture/progress = ExtResource( 2 )

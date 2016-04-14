@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://game_over/Gameover-overlay.png" type="Texture" id=1]
 [ext_resource path="res://game_over/Gameover-doge.png" type="Texture" id=2]
@@ -6,10 +6,25 @@
 [ext_resource path="res://game_over/tipsFont.fnt" type="Font" id=4]
 [ext_resource path="res://game_over/tips.gd" type="Script" id=5]
 [ext_resource path="res://game_over/scoreFont.fnt" type="Font" id=6]
-[ext_resource path="res://game_over/btn_retry.png" type="Texture" id=7]
-[ext_resource path="res://game_over/btn_retry_pressed.png" type="Texture" id=8]
-[ext_resource path="res://game_over/btn_menu.png" type="Texture" id=9]
-[ext_resource path="res://game_over/btn_menu_pressed.png" type="Texture" id=10]
+[ext_resource path="res://game_over/final_score.gd" type="Script" id=7]
+[ext_resource path="res://game_over/btn_retry.png" type="Texture" id=8]
+[ext_resource path="res://game_over/btn_retry_pressed.png" type="Texture" id=9]
+[ext_resource path="res://game_over/retryBtn.gd" type="Script" id=10]
+[ext_resource path="res://game_over/btn_menu.png" type="Texture" id=11]
+[ext_resource path="res://game_over/btn_menu_pressed.png" type="Texture" id=12]
+[ext_resource path="res://game_over/menuBtn.gd" type="Script" id=13]
+[ext_resource path="res://game_over/reveal.gd" type="Script" id=14]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "GameOver"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:rect/pos")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( -4, -4 ), "values":[ Vector2( 0, -1080 ), Vector2( 0, 0 ) ] }
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -18,7 +33,18 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="Modal" type="TextureFrame" parent="."]
+[node name="Control" type="Control" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+margin/top = -1080.0
+margin/bottom = 1080.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="Modal" type="TextureFrame" parent="Control"]
 
 visibility/opacity = 0.496045
 anchor/right = 1
@@ -31,7 +57,7 @@ texture = ExtResource( 1 )
 modulate = Color( 0.253906, 0.242004, 0.242004, 1 )
 expand = true
 
-[node name="Doge" type="TextureFrame" parent="."]
+[node name="Doge" type="TextureFrame" parent="Control"]
 
 margin/left = 1095.0
 margin/top = -74.0
@@ -43,7 +69,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 texture = ExtResource( 2 )
 
-[node name="Title" type="TextureFrame" parent="."]
+[node name="Title" type="TextureFrame" parent="Control"]
 
 margin/left = 94.0
 margin/top = -348.0
@@ -55,14 +81,14 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 texture = ExtResource( 3 )
 
-[node name="Tips" type="Label" parent="."]
+[node name="Tips" type="Label" parent="Control"]
 
 anchor/right = 1
 anchor/bottom = 1
-margin/left = 509.0
+margin/left = 112.0
 margin/top = 268.0
-margin/right = 803.0
-margin/bottom = 758.0
+margin/right = 808.0
+margin/bottom = 738.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -76,14 +102,14 @@ lines_skipped = 0
 max_lines_visible = -1
 script/script = ExtResource( 5 )
 
-[node name="Score" type="Label" parent="."]
+[node name="Score" type="Label" parent="Control"]
 
 anchor/left = 3
 anchor/right = 3
 margin/left = 865.0
-margin/top = 550.0
+margin/top = 615.0
 margin/right = -35.0
-margin/bottom = 671.0
+margin/bottom = 736.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -93,15 +119,17 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+script/script = ExtResource( 7 )
 
-[node name="Rank" type="Label" parent="."]
+[node name="Rank" type="Label" parent="Control"]
 
+visibility/visible = false
 anchor/left = 3
 anchor/right = 3
-margin/left = 865.0
-margin/top = 700.0
-margin/right = -35.0
-margin/bottom = 821.0
+margin/left = 861.0
+margin/top = 747.0
+margin/right = -39.0
+margin/bottom = 868.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -112,32 +140,52 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="TextureButton" type="TextureButton" parent="Control"]
+
+margin/left = 1307.0
+margin/top = 454.0
+margin/right = 1819.0
+margin/bottom = 651.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+textures/normal = ExtResource( 8 )
+textures/pressed = ExtResource( 9 )
+textures/focused = ExtResource( 9 )
+script/script = ExtResource( 10 )
+
+[node name="TextureButton1" type="TextureButton" parent="Control"]
 
 margin/left = 1311.0
-margin/top = 306.0
+margin/top = 712.0
 margin/right = 1823.0
-margin/bottom = 818.0
+margin/bottom = 909.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 toggle_mode = false
-textures/normal = ExtResource( 7 )
-textures/pressed = ExtResource( 8 )
+textures/normal = ExtResource( 11 )
+textures/pressed = ExtResource( 12 )
+textures/focused = ExtResource( 12 )
+script/script = ExtResource( 13 )
 
-[node name="TextureButton1" type="TextureButton" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-margin/left = 1315.0
-margin/top = 555.0
-margin/right = 1827.0
-margin/bottom = 1067.0
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-toggle_mode = false
-textures/normal = ExtResource( 9 )
-textures/pressed = ExtResource( 10 )
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/GameOver = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+script/script = ExtResource( 14 )
+
+[connection signal="pressed" from="Control/TextureButton" to="Control/TextureButton" method="_on_TextureButton_pressed"]
+
+[connection signal="pressed" from="Control/TextureButton1" to="Control/TextureButton1" method="_on_TextureButton1_pressed"]
 
 
