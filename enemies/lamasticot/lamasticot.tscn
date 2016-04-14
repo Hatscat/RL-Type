@@ -51,9 +51,9 @@ texture = ExtResource( 1 )
 
 [node name="head" type="Sprite" parent="body"]
 
-transform/pos = Vector2( -124.314, 80.2309 )
-transform/rot = 17.0397
-transform/scale = Vector2( 1.13271, 1.13271 )
+transform/pos = Vector2( -124.803, 81.0215 )
+transform/rot = 0.92337
+transform/scale = Vector2( 0.828139, 0.828139 )
 texture = ExtResource( 2 )
 offset = Vector2( -74.8955, -122.318 )
 
@@ -70,11 +70,13 @@ autoplay = "enemy_1"
 
 [node name="propulsion" type="Sprite" parent="body"]
 
-transform/pos = Vector2( 270.292, -128.14 )
-transform/rot = 24.4556
-transform/scale = Vector2( 1.32283, 1.32283 )
+visibility/behind_parent = true
+transform/pos = Vector2( 168.45, -45.0077 )
+transform/rot = 20.6207
+transform/scale = Vector2( 1.50686, 2.48684 )
 texture = ExtResource( 3 )
 vframes = 6
+frame = 4
 
 [node name="anim" type="AnimationPlayer" parent="body/propulsion"]
 
@@ -89,12 +91,14 @@ autoplay = ""
 
 [node name="explosion" type="Sprite" parent="body"]
 
+visibility/visible = false
 transform/pos = Vector2( -80.6381, 3.15743 )
 transform/rot = 18.8925
 transform/scale = Vector2( 8.88623, 8.88623 )
 texture = ExtResource( 4 )
 vframes = 4
 hframes = 5
+frame = 19
 
 [node name="anim" type="AnimationPlayer" parent="body/explosion"]
 
