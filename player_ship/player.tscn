@@ -28,11 +28,7 @@ step = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
-tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, 2 ] }
-tracks/1/type = "value"
-tracks/1/path = NodePath("../propulsion1:frame")
-tracks/1/interp = 1
-tracks/1/keys = { "cont":true, "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, 2 ] }
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, 10 ] }
 
 [node name="Player" type="Node2D"]
 
@@ -55,12 +51,11 @@ max_life = 100
 
 [node name="ship" type="Sprite" parent="player"]
 
-transform/pos = Vector2( 0.396673, 0 )
+transform/pos = Vector2( 0.459331, 0 )
 transform/scale = Vector2( 0.182537, 0.182537 )
 texture = ExtResource( 3 )
 vframes = 6
 frame = 5
-__meta__ = { "_editor_collapsed":true }
 
 [node name="anim" type="AnimationPlayer" parent="player/ship"]
 
@@ -85,12 +80,11 @@ trigger = false
 [node name="propulsion" type="Sprite" parent="player"]
 
 visibility/behind_parent = true
-transform/pos = Vector2( -26.5925, -6.4606 )
-transform/scale = Vector2( 0.259881, 0.561561 )
+transform/pos = Vector2( -25.3636, -9.03298 )
+transform/scale = Vector2( 0.317404, 0.317404 )
 texture = ExtResource( 4 )
 offset = Vector2( -75.9221, -0.975206 )
-hframes = 3
-__meta__ = { "_editor_collapsed":true }
+vframes = 11
 
 [node name="anim" type="AnimationPlayer" parent="player/propulsion"]
 
@@ -105,12 +99,11 @@ autoplay = ""
 
 [node name="propulsion1" type="Sprite" parent="player"]
 
-transform/pos = Vector2( -28.7007, 5.13428 )
+transform/pos = Vector2( -27.9001, 4.86511 )
 transform/scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 4 )
 offset = Vector2( -77.1881, -1.03007 )
-hframes = 3
-__meta__ = { "_editor_collapsed":true }
+vframes = 11
 
 [node name="anim" type="AnimationPlayer" parent="player/propulsion1"]
 
