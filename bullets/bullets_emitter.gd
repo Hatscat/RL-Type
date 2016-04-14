@@ -70,39 +70,45 @@ func emit_bullets(bullets_nb, total_duration=0, bullets_groups=null): # todo: + 
 			shape_anim.set_speed(shape_anim_speed)
 		target_pts = get_shape_pts(get_shape_polygons(), bullets_nb)
 	# bullets setup
+	if bullets_groups == null:
+		bullets_groups = []
+		for i in range(bullets_nb):
+			bullets_groups.append(1)
 	if target_pts != null:
-		spawn_bullet(Bullet, bullets_nb, delay, 0, target_pts)
+		spawn_bullet(Bullet, bullets_groups, delay, 0, target_pts)
 	else:
-		spawn_bullet(Bullet, bullets_nb, delay)
+		spawn_bullet(Bullet, bullets_groups, delay)
 
 
-func spawn_bullet(Bullet, bullets_nb, delay=0, idx=0, target_pts=null):
-	var b = Bullet.instance()
-	bullets.append(b)
-	b.set_pos(get_global_pos())
-	b.damages = bullet_damages
-	b.min_speed = bullet_min_speed
-	b.max_speed = bullet_max_speed
-	b.speed = b.max_speed
-	b.direction = deg2rad(bullet_direction_deg)
-	if target_pts != null:
-		b.target = target_pts[idx]
-		b.stick_target = bullet_stick_target
-	b.tween_type = null #todo
-	b.anim_name = bullet_anim_name
-	b.anim_speed = bullet_anim_speed
-	b.sprite = bullet_sprite
-	b.color = bullet_color
-	b.scale = bullet_scale
-	b.emitter = self
-	get_tree().get_root().get_node(root_node_name).add_child(b)
+func spawn_bullet(Bullet, bullets_groups, delay=0, idx=0, target_pts=null, target_idx=0):
+	for i in range(bullets_groups[idx]):
+		var b = Bullet.instance()
+		bullets.append(b)
+		b.set_pos(get_global_pos())
+		b.damages = bullet_damages
+		b.min_speed = bullet_min_speed
+		b.max_speed = bullet_max_speed
+		b.speed = b.max_speed
+		b.direction = deg2rad(bullet_direction_deg)
+		if target_pts != null:
+			b.target = target_pts[target_idx]
+			b.stick_target = bullet_stick_target
+		b.tween_type = null #todo
+		b.anim_name = bullet_anim_name
+		b.anim_speed = bullet_anim_speed
+		b.sprite = bullet_sprite
+		b.color = bullet_color
+		b.scale = bullet_scale
+		b.emitter = self
+		get_tree().get_root().get_node(root_node_name).add_child(b)
+		target_idx += 1
 	idx += 1
-	if idx < bullets_nb:
+	if idx < bullets_groups.size():
 		if delay > 0:
 			yield(timer, "timeout")
-			spawn_bullet(Bullet, bullets_nb, delay, idx, target_pts)
+			spawn_bullet(Bullet, bullets_groups, delay, idx, target_pts, target_idx)
 		else:
-			spawn_bullet(Bullet, bullets_nb, delay, idx, target_pts)
+			spawn_bullet(Bullet, bullets_groups, delay, idx, target_pts, target_idx)
 	
 
 func get_shape_polygons():
