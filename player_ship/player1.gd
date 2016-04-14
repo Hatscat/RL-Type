@@ -86,3 +86,6 @@ func check_life():
 		#get node explosion . play
 		set_process(false)
 		hide()
+
+func is_player():
+	pass

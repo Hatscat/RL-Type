@@ -1,19 +1,12 @@
 
 extends Node2D
 
-
 export(String) var root_node_name = "Node2D"
 # bullets config
-export(int) var bullet_damages = 1
-export(int) var bullet_min_speed = 100
-export(int) var bullet_max_speed = 400
 export(float) var bullet_direction_deg = 0
 export(bool) var bullet_stick_target = false
-export(Texture) var bullet_sprite = preload("res://bullets/bullet_ball.png")
-export(Color, RGBA) var bullet_color = null
-export(Vector2) var bullet_scale = Vector2(1, 1)
-export(String) var bullet_anim_name = null
-export(float) var bullet_anim_speed = 1
+export(String) var bullet_node_path = "Bullet"
+
 # shape config
 export(bool) var close_shape = false
 export(int) var shape_speed = 0
@@ -21,6 +14,7 @@ export(float) var shape_direction_deg = 0
 export(String) var shape_anim_name = null
 export(float) var shape_anim_speed = 1
 # private vars
+var Bullet
 var shape = null
 var shape_origin_pos
 var shape_anim
@@ -30,6 +24,8 @@ var timer
 
 
 func _ready():
+	Bullet = get_node(bullet_node_path)
+	Bullet.set_active(false)
 	shape = get_node("shape")
 	timer = get_node("timer")
 	if shape != null:
@@ -48,7 +44,6 @@ func _process(delta):
 
 
 func emit_bullets(bullets_nb, total_duration=0, bullets_groups=null): # todo: + intervales
-	var Bullet = preload("res://bullets/bullet.tscn")
 	var delay = 0
 	if total_duration > 0:
 		total_duration += 0.0
@@ -82,23 +77,14 @@ func emit_bullets(bullets_nb, total_duration=0, bullets_groups=null): # todo: + 
 
 func spawn_bullet(Bullet, bullets_groups, delay=0, idx=0, target_pts=null, target_idx=0):
 	for i in range(bullets_groups[idx]):
-		var b = Bullet.instance()
+		var b = Bullet.duplicate()
 		bullets.append(b)
 		b.set_pos(get_global_pos())
-		b.damages = bullet_damages
-		b.min_speed = bullet_min_speed
-		b.max_speed = bullet_max_speed
-		b.speed = b.max_speed
 		b.direction = deg2rad(bullet_direction_deg)
 		if target_pts != null:
 			b.target = target_pts[target_idx]
 			b.stick_target = bullet_stick_target
 		b.tween_type = null #todo
-		b.anim_name = bullet_anim_name
-		b.anim_speed = bullet_anim_speed
-		b.sprite = bullet_sprite
-		b.color = bullet_color
-		b.scale = bullet_scale
 		b.emitter = self
 		get_tree().get_root().get_node(root_node_name).add_child(b)
 		target_idx += 1

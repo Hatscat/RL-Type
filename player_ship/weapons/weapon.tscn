@@ -38,10 +38,11 @@ script/script = ExtResource( 2 )
 
 [node name="Emmiter" parent="Colider" instance=ExtResource( 3 )]
 
-bullet_min_speed = 1000
-bullet_max_speed = 2000
-bullet_color = Color( 0.867188, 0.854802, 0.0745239, 1 )
-bullet_scale = Vector2( 0.3, 0.3 )
+[node name="Bullet" parent="Colider/Emmiter"]
+
+damages = 1
+max_speed = 2000
+sender = "is_player"
 
 [node name="Icon" type="Sprite" parent="Colider"]
 
@@ -49,3 +50,4 @@ transform/scale = Vector2( 0.04916, 0.04916 )
 texture = ExtResource( 4 )
 
 
+[editable path="Colider/Emmiter"]
