@@ -77,10 +77,14 @@ func _on_visibility_exit_screen():
 
 func explode():
 	is_active = false
-	queue_free()
 	set_process(false)
-	#get_node("Area2D/Anim").play("explode")
+	get_node("Sprite").hide()
+	get_node("explosion").show()
+	get_node("explosion/AnimationPlayer").play("explode")
+	get_node("explosion/AnimationPlayer").connect("finished", self, "destroy")
 
+func destroy():
+	queue_free()
 
 func _on_area_enter(area):
 	if (!is_active || area.has_method("is_weapon") || area.has_method("is_bullet") || area.has_method(sender) ) :
