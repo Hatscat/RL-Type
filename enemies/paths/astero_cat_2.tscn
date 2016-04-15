@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://enemies/paths/enemies_emitter.gd" type="Script" id=1]
+[ext_resource path="res://bullets/bullets_emitter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://bullets/bullets_emitter.gd" type="Script" id=3]
+[ext_resource path="res://enemies/asterocat/asterocat.tscn" type="PackedScene" id=4]
+[ext_resource path="res://bullets/bullet.gd" type="Script" id=5]
+
+[node name="Node2D" type="Node2D"]
+
+script/script = ExtResource( 1 )
+threat_level = 1
+
+[node name="bullets_emitter" type="Node2D" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 1954.27, 1118.69 )
+script/script = ExtResource( 3 )
+root_node_name = "Node2D"
+bullet_dir_radom = true
+bullet_random_dir_range = [ 90.0, 180.0 ]
+bullet_directions_deg = [ 0, 45, 90, 135, 180 ]
+bullet_directions_add = 0
+bullet_stick_target = false
+bullet_node_path = "AsteroCat"
+close_shape = false
+shape_speed = 0
+shape_direction_deg = 0
+shape_anim_name = null
+shape_anim_speed = 1
+is_auto_play = false
+auto_bullet_nb = null
+auto_time_bullet = null
+
+[node name="AsteroCat" type="Node2D" parent="bullets_emitter" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 2854.29, 2247.59 )
+transform/scale = Vector2( 0.5, 0.5 )
+script/script = ExtResource( 5 )
+damages = 1
+max_speed = 200
+is_enemy = true
+max_life = 10
+anim_name = null
+rotate_to_target = true
+
+

@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=9 format=1]
 
-[ext_resource path="res://enemies/base_enemy.gd" type="Script" id=1]
+[ext_resource path="res://bullets/bullet.gd" type="Script" id=1]
 [ext_resource path="res://enemies/grumpy/grumpy_mouse_sprite.png" type="Texture" id=2]
-[ext_resource path="res://enemies/explosion/explosion_enemy.png" type="Texture" id=3]
+[ext_resource path="res://enemies/is_enemy.gd" type="Script" id=3]
+[ext_resource path="res://enemies/base_enemy.gd" type="Script" id=4]
+[ext_resource path="res://bullets/bullets_emitter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://enemies/explosion/explosion_enemy.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 
@@ -20,32 +23,24 @@ tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.5 ), "transitions":Float
 custom_solver_bias = 0.0
 radius = 10.0
 
-[sub_resource type="Animation" id=3]
+[node name="Node2D" type="Node2D"]
 
-resource/name = "explode"
-length = 0.3
-loop = false
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, 19 ] }
-
-[node name="grumpy" type="Node2D"]
-
+transform/scale = Vector2( 0.5, 0.5 )
 script/script = ExtResource( 1 )
-max_life = 100
-min_speed = 200
-max_speed = 200
-explosion_damage = 5
+damages = 5
+max_speed = 0
+is_enemy = true
+max_life = 2
+anim_name = null
+rotate_to_target = false
 
-[node name="mouse" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 
 texture = ExtResource( 2 )
 vframes = 8
-frame = 5
+__meta__ = { "_editor_collapsed":true }
 
-[node name="anim" type="AnimationPlayer" parent="mouse"]
+[node name="anim" type="AnimationPlayer" parent="Sprite"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
@@ -66,6 +61,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+script/script = ExtResource( 3 )
 __meta__ = { "_editor_collapsed":true }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -82,24 +78,42 @@ transform/pos = Vector2( 12.7206, 19.552 )
 transform/scale = Vector2( 18.1257, 17.6564 )
 rect = Rect2( -10, -10, 20, 20 )
 
-[node name="explosion" type="Sprite" parent="."]
+[node name="Weapon" type="Node2D" parent="."]
 
-transform/pos = Vector2( 6.78917, -4.09588 )
-transform/scale = Vector2( 6.62225, 6.62225 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 5
-frame = 19
+script/script = ExtResource( 4 )
+__meta__ = { "_editor_collapsed":true }
+cooldown = 3.0
+bullets_nb = 18.0
+total_time = 3.0
+patern_name = "emitter"
 
-[node name="anim" type="AnimationPlayer" parent="explosion"]
+[node name="emitter" parent="Weapon" instance=ExtResource( 5 )]
 
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
-anims/explode = SubResource( 3 )
-playback/active = true
-playback/speed = 1.0
-blend_times = [  ]
-autoplay = ""
+bullet_directions_deg = [ 0 ]
+bullet_directions_add = 20.0
+
+[node name="Bullet" parent="Weapon/emitter"]
+
+transform/scale = Vector2( 1, 1 )
+max_speed = 500
+
+[node name="Sprite" parent="Weapon/emitter/Bullet"]
+
+modulate = Color( 0.0361633, 0.925781, 0.0917645, 1 )
+
+[node name="explosion" parent="." instance=ExtResource( 6 )]
+
+visibility/visible = false
+transform/pos = Vector2( 3.44123, 26.8821 )
+transform/scale = Vector2( 5.95994, 5.95994 )
+
+[node name="Sprite" parent="explosion"]
+
+modulate = Color( 0.5625, 0.322998, 0.322998, 1 )
+
+[connection signal="exit_screen" from="VisibilityNotifier2D" to="." method="_on_visibility_exit_screen"]
 
 
+[editable path="Weapon/emitter"]
+[editable path="Weapon/emitter/Bullet"]
+[editable path="explosion"]

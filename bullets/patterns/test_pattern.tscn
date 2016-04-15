@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://enemies/nyan/nyan.tscn" type="PackedScene" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 698.376, 335.86 )
+
+[node name="Area2D" parent="Node2D"]
+
+linear_damp = 0.1
+
+
+[editable path="Node2D"]

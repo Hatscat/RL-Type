@@ -7,7 +7,8 @@
 
 script/script = ExtResource( 1 )
 root_node_name = "Node2D"
-bullet_direction_deg = 0
+bullet_directions_deg = [ 0, 45, 90, 135, 180 ]
+bullet_directions_add = 0
 bullet_stick_target = false
 bullet_node_path = "Bullet"
 close_shape = false
@@ -15,6 +16,9 @@ shape_speed = 0
 shape_direction_deg = 0
 shape_anim_name = null
 shape_anim_speed = 1
+is_auto_play = false
+auto_bullet_nb = null
+auto_time_bullet = null
 
 [node name="timer" type="Timer" parent="."]
 
@@ -26,5 +30,6 @@ autostart = false
 [node name="Bullet" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( -9000, -9000 )
+is_enemy = true
 
 

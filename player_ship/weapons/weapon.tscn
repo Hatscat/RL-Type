@@ -38,11 +38,26 @@ script/script = ExtResource( 2 )
 
 [node name="Emmiter" parent="Colider" instance=ExtResource( 3 )]
 
+bullet_dir_radom = false
+bullet_random_dir_range = [ 0.0, 180.0 ]
+bullet_directions_deg = [ 0, 45, 90, 180 ]
+
 [node name="Bullet" parent="Colider/Emmiter"]
 
-damages = 1
 max_speed = 2000
-sender = "is_player"
+is_enemy = false
+
+[node name="Sprite" parent="Colider/Emmiter/Bullet"]
+
+modulate = Color( 0.945313, 0.829081, 0.0701599, 1 )
+
+[node name="explosion" parent="Colider/Emmiter/Bullet"]
+
+visibility/visible = true
+
+[node name="Sprite" parent="Colider/Emmiter/Bullet/explosion"]
+
+modulate = Color( 0.875, 1, 0, 1 )
 
 [node name="Icon" type="Sprite" parent="Colider"]
 
@@ -51,3 +66,5 @@ texture = ExtResource( 4 )
 
 
 [editable path="Colider/Emmiter"]
+[editable path="Colider/Emmiter/Bullet"]
+[editable path="Colider/Emmiter/Bullet/explosion"]

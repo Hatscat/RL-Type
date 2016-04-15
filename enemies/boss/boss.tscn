@@ -1,15 +1,20 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=13 format=1]
 
-[ext_resource path="res://enemies/boss/putins_body_480.png" type="Texture" id=1]
-[ext_resource path="res://enemies/boss/putins_normalhead_480.png" type="Texture" id=2]
-[ext_resource path="res://enemies/boss/putins_sadhead_.png" type="Texture" id=3]
-[ext_resource path="res://enemies/boss/bear_eye.png" type="Texture" id=4]
+[ext_resource path="res://bullets/bullet.gd" type="Script" id=1]
+[ext_resource path="res://enemies/boss/putins_body_480.png" type="Texture" id=2]
+[ext_resource path="res://enemies/boss/putins_normalhead_480.png" type="Texture" id=3]
+[ext_resource path="res://enemies/boss/putins_sadhead_.png" type="Texture" id=4]
+[ext_resource path="res://enemies/boss/bear_eye.png" type="Texture" id=5]
+[ext_resource path="res://enemies/is_enemy.gd" type="Script" id=6]
+[ext_resource path="res://enemies/explosion/explosion_enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://enemies/base_enemy.gd" type="Script" id=8]
+[ext_resource path="res://bullets/bullets_emitter.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
 
 resource/name = "heart"
 length = 0.3
-loop = false
+loop = true
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:transform/rot")
@@ -20,33 +25,48 @@ tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25
 
 resource/name = "heart"
 length = 1.0
-loop = false
+loop = true
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:transform/scale")
 tracks/0/interp = 1
 tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.1, 0.3 ), "transitions":FloatArray( 1, 1, 1 ), "values":[ Vector2( 1, 1 ), Vector2( 3, 3 ), Vector2( 1, 1 ) ] }
 
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
 [node name="Node2D" type="Node2D"]
 
-[node name="boss" type="Sprite" parent="."]
+script/script = ExtResource( 1 )
+damages = 1
+max_speed = 0
+is_enemy = false
+max_life = 10
+anim_name = null
+rotate_to_target = true
+
+[node name="Sprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( -0.452896, 0.677856 )
-texture = ExtResource( 1 )
+transform/rot = -12.3764
+texture = ExtResource( 2 )
+__meta__ = { "_editor_collapsed":true }
 
-[node name="normalhead" type="Sprite" parent="boss"]
+[node name="normalhead" type="Sprite" parent="Sprite"]
+
+transform/pos = Vector2( 4.59996, -186.67 )
+texture = ExtResource( 3 )
+
+[node name="sadhead" type="Sprite" parent="Sprite"]
 
 visibility/visible = false
-transform/pos = Vector2( 4.59996, -186.67 )
-texture = ExtResource( 2 )
-
-[node name="sadhead" type="Sprite" parent="boss"]
-
 transform/pos = Vector2( 7.82147, -165.761 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 offset = Vector2( -1.62256, -19.2356 )
 
-[node name="anim" type="AnimationPlayer" parent="boss/sadhead"]
+[node name="anim" type="AnimationPlayer" parent="Sprite/sadhead"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
@@ -55,14 +75,15 @@ anims/heart = SubResource( 1 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
-autoplay = ""
+autoplay = "heart"
 
-[node name="bear_eye" type="Sprite" parent="boss"]
+[node name="bear_eye" type="Sprite" parent="Sprite"]
 
 transform/pos = Vector2( -161.016, -12.0438 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
+__meta__ = { "_editor_collapsed":true }
 
-[node name="anim" type="AnimationPlayer" parent="boss/bear_eye"]
+[node name="anim" type="AnimationPlayer" parent="Sprite/bear_eye"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
@@ -71,6 +92,113 @@ anims/heart = SubResource( 2 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
-autoplay = ""
+autoplay = "heart"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+transform/rot = -11.9842
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 23.4481, 0, 0, 9.44538, -5.09034, 32.2274 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 3 )
+shapes/1/transform = Matrix32( 5.3291, 0, 0, 7.60775, -2.70155, -136.907 )
+shapes/1/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+transform/pos = Vector2( -5.09034, 32.2274 )
+transform/scale = Vector2( 23.4481, 9.44538 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="Area2D"]
+
+transform/pos = Vector2( -2.70155, -136.907 )
+transform/scale = Vector2( 5.3291, 7.60775 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 1
+
+[node name="explosion" parent="." instance=ExtResource( 7 )]
+
+visibility/visible = false
+transform/pos = Vector2( 26.6306, -21.1475 )
+transform/scale = Vector2( 8.28226, 8.28226 )
+
+[node name="Sprite" parent="explosion"]
+
+frame = 19
+
+[node name="Weapon" type="Node2D" parent="."]
+
+transform/pos = Vector2( -189.162, 48.0323 )
+script/script = ExtResource( 8 )
+__meta__ = { "_editor_collapsed":true }
+cooldown = 0.06
+bullets_nb = 1.0
+total_time = 0.0
+patern_name = "emitter"
+
+[node name="emitter" parent="Weapon" instance=ExtResource( 9 )]
+
+transform/pos = Vector2( -23.889, -46.8226 )
+bullet_dir_radom = false
+bullet_random_dir_range = [ 0.0, 180.0 ]
+bullet_directions_deg = [ 180 ]
+
+[node name="Bullet" parent="Weapon/emitter"]
+
+transform/scale = Vector2( 1.5, 1.5 )
+z/z = 0
+max_speed = 1000
+
+[node name="Sprite" parent="Weapon/emitter/Bullet"]
+
+modulate = Color( 0.546875, 0.0341797, 0.0341797, 1 )
+
+[node name="Weapon1" type="Node2D" parent="."]
+
+transform/pos = Vector2( -189.162, 48.0323 )
+script/script = ExtResource( 8 )
+__meta__ = { "_editor_collapsed":true }
+cooldown = 3.0
+bullets_nb = 36.0
+total_time = 3.0
+patern_name = "emitter"
+
+[node name="emitter" parent="Weapon1" instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 383.181, -18.1557 )
+bullet_dir_radom = false
+bullet_random_dir_range = [ 0.0, 180.0 ]
+bullet_directions_deg = [ -90, 0, 90, 180 ]
+bullet_directions_add = 10.0
+
+[node name="Bullet" parent="Weapon1/emitter"]
+
+transform/scale = Vector2( 1, 1 )
+
+[node name="Sprite" parent="Weapon1/emitter/Bullet"]
+
+modulate = Color( 0.259949, 1, 0.0234375, 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+transform/pos = Vector2( -1.05873, -17.7037 )
+transform/scale = Vector2( 23.6133, 18.6348 )
+rect = Rect2( -10, -10, 20, 20 )
 
 
+[editable path="explosion"]
+[editable path="Weapon/emitter"]
+[editable path="Weapon/emitter/Bullet"]
+[editable path="Weapon1/emitter"]
+[editable path="Weapon1/emitter/Bullet"]

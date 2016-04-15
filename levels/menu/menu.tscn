@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://levels/menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://levels/menu/imgs/Title-screen_background.png" type="Texture" id=2]
@@ -6,11 +6,14 @@
 [ext_resource path="res://levels/menu/imgs/btn_play.png" type="Texture" id=4]
 [ext_resource path="res://levels/menu/imgs/btn_play_pressed.png" type="Texture" id=5]
 [ext_resource path="res://levels/menu/imgs/btn_play_hover.png" type="Texture" id=6]
+[ext_resource path="res://levels/menu/imgs/LogoIsartDigital.png" type="Texture" id=7]
+[ext_resource path="res://levels/menu/imgs/GameWeek2016_Logo.png" type="Texture" id=8]
+[ext_resource path="res://levels/menu/fonts/namesFont.fnt" type="Font" id=9]
 
 [sub_resource type="Animation" id=1]
 
 resource/name = "MenuEnterAnim"
-length = 2.0
+length = 3.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -21,6 +24,10 @@ tracks/1/type = "value"
 tracks/1/path = NodePath("PlayBtn:rect/pos")
 tracks/1/interp = 1
 tracks/1/keys = { "cont":true, "times":FloatArray( 1, 2 ), "transitions":FloatArray( -4, -4 ), "values":[ Vector2( 1052, 1250 ), Vector2( 1052, 566 ) ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Control:rect/pos")
+tracks/2/interp = 1
+tracks/2/keys = { "cont":true, "times":FloatArray( 2, 3 ), "transitions":FloatArray( -4, -0.25 ), "values":[ Vector2( -550, 0 ), Vector2( 0, 0 ) ] }
 
 [sub_resource type="Animation" id=2]
 
@@ -67,9 +74,9 @@ anchor/top = 3
 anchor/right = 1
 anchor/bottom = 3
 margin/left = 1165.0
-margin/top = 280.0
+margin/top = 854.0
 margin/right = 89.0
-margin/bottom = 20.0
+margin/bottom = 594.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -83,9 +90,9 @@ anchor/top = 3
 anchor/right = 1
 anchor/bottom = 3
 margin/left = 868.0
-margin/top = -26.0
+margin/top = -710.0
 margin/right = 356.0
-margin/bottom = -217.0
+margin/bottom = -901.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -116,6 +123,58 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="Control" type="Control" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+margin/left = -550.0
+margin/right = 542.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="TextureFrame 3" type="TextureFrame" parent="Control"]
+
+margin/left = 58.0
+margin/top = 896.0
+margin/right = 988.0
+margin/bottom = 1183.0
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+texture = ExtResource( 7 )
+
+[node name="TextureFrame 4" type="TextureFrame" parent="Control"]
+
+margin/left = 59.0
+margin/top = 41.0
+margin/right = 782.0
+margin/bottom = 923.0
+rect/scale = Vector2( 0.2, 0.2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+texture = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="Control"]
+
+margin/left = 57.0
+margin/top = 261.0
+margin/right = 346.0
+margin/bottom = 841.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 9 )
+text = "Maxime\nLO RE\n\nLucien\nBOUDY\n\nChristopher\nLONGFORT\n\nEssam\nCHEBLI\n\nVictor\nGRENU\n\nKillian\nCOQUERELLE\n\nMathilde\nKALLENBRUNN"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="pressed" from="PlayBtn" to="." method="_on_PlayBtn_pressed"]
 
