@@ -31,6 +31,7 @@ damages = 5
 max_speed = 0
 is_enemy = true
 max_life = 2
+type = 2
 anim_name = null
 rotate_to_target = false
 
@@ -89,8 +90,11 @@ patern_name = "emitter"
 
 [node name="emitter" parent="Weapon" instance=ExtResource( 5 )]
 
+bullet_dir_radom = false
+bullet_random_dir_range = [ 0.0, 180.0 ]
 bullet_directions_deg = [ 0 ]
 bullet_directions_add = 20.0
+bullet_position_add = Vector2( 0, 0 )
 
 [node name="Bullet" parent="Weapon/emitter"]
 

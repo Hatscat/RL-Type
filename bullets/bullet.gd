@@ -10,6 +10,7 @@ export var damages = 1
 export var max_speed = 200
 export var is_enemy = false
 export var max_life = 10
+export var type = 0
 export(String) var anim_name = null
 export(bool) var rotate_to_target = true
 var min_speed = 200
@@ -71,6 +72,9 @@ func _process(delta):
 		translate(Vector2(cos(direction), sin(-direction)) * sd)
 
 func _on_visibility_exit_screen(viewport):
+	if is_enemy:
+		get_node("/root/events_emitter").emit_signal("enemy_get_away", type)
+		
 	if emitter != null:
 		var ref = emitter.get_ref()
 		if ref and ref.has_method("remove_bullet"):
@@ -81,6 +85,8 @@ func _on_visibility_exit_screen(viewport):
 func explode():
 	is_active = false
 	set_process(false)
+	if is_enemy:
+		get_node("/root/events_emitter").emit_signal("enemy_destroyed", type)
 	#get_node("/root/game_data").player.get_parrent().get_node("SamplePlayer").play("sound_explode")
 	get_node("Sprite").hide()
 	get_node("explosion").show()

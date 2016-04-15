@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://bullets/bullet.gd" type="Script" id=1]
 [ext_resource path="res://bullets/is_bullet.gd" type="Script" id=2]
 [ext_resource path="res://bullets/bullet_ball.png" type="Texture" id=3]
+[ext_resource path="res://enemies/explosion/explosion_enemy.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -15,7 +16,7 @@ length = 1.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:visibility/visible")
+tracks/0/path = NodePath("../Sprite:visibility/visible")
 tracks/0/interp = 1
 tracks/0/keys = { "cont":false, "times":FloatArray( 0, 0.1 ), "transitions":FloatArray( 1, 1 ), "values":[ true, false ] }
 tracks/1/type = "value"
@@ -43,7 +44,11 @@ transform/scale = Vector2( 0.5, 0.5 )
 script/script = ExtResource( 1 )
 damages = 1
 max_speed = 200
-sender = "is_enemy"
+is_enemy = false
+max_life = 10
+type = 0
+anim_name = null
+rotate_to_target = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -56,10 +61,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 2 )
-
-[node name="Sprite" type="Sprite" parent="Area2D"]
-
-texture = ExtResource( 3 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="Tween" type="Tween" parent="Area2D"]
 
@@ -120,6 +122,17 @@ transform/pos = Vector2( -1.91643, -0.289452 )
 transform/scale = Vector2( 5.08935, 4.88608 )
 rect = Rect2( -10, -10, 20, 20 )
 
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 3 )
+
+[node name="explosion" parent="." instance=ExtResource( 4 )]
+
+visibility/visible = false
+transform/pos = Vector2( -0.764141, -0.161076 )
+transform/scale = Vector2( 1.53208, 1.53208 )
+
 [connection signal="exit_screen" from="VisibilityNotifier2D" to="." method="_on_visibility_exit_screen"]
 
 
+[editable path="explosion"]

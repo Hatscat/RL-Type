@@ -41,6 +41,7 @@ damages = 1
 max_speed = 200
 is_enemy = true
 max_life = 1
+type = 1
 anim_name = null
 rotate_to_target = true
 
@@ -109,10 +110,12 @@ transform/pos = Vector2( -29.1613, 0 )
 bullet_dir_radom = false
 bullet_random_dir_range = [ 0.0, 180.0 ]
 bullet_directions_deg = [ 180 ]
+bullet_position_add = Vector2( 0, 0 )
 
 [node name="Bullet" parent="Weapon/emitter"]
 
 max_speed = 500
+type = 0
 
 [node name="Area2D" parent="Weapon/emitter/Bullet"]
 

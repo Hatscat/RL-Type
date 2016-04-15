@@ -26,5 +26,6 @@ bullet_node_path = "putin"
 transform/pos = Vector2( 284.118, -862.15 )
 max_speed = -10
 is_enemy = true
+type = 0
 
 

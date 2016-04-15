@@ -44,6 +44,7 @@ damages = 1
 max_speed = 0
 is_enemy = false
 max_life = 10
+type = 4
 anim_name = null
 rotate_to_target = true
 
@@ -153,12 +154,18 @@ transform/pos = Vector2( -23.889, -46.8226 )
 bullet_dir_radom = false
 bullet_random_dir_range = [ 0.0, 180.0 ]
 bullet_directions_deg = [ 180 ]
+bullet_position_add = Vector2( 0, 0 )
 
 [node name="Bullet" parent="Weapon/emitter"]
 
 transform/scale = Vector2( 1.5, 1.5 )
 z/z = 0
 max_speed = 1000
+type = 0
+
+[node name="Area2D" parent="Weapon/emitter/Bullet"]
+
+linear_damp = 0.1
 
 [node name="Sprite" parent="Weapon/emitter/Bullet"]
 
@@ -181,10 +188,16 @@ bullet_dir_radom = false
 bullet_random_dir_range = [ 0.0, 180.0 ]
 bullet_directions_deg = [ -90, 0, 90, 180 ]
 bullet_directions_add = 10.0
+bullet_position_add = Vector2( 0, 0 )
 
 [node name="Bullet" parent="Weapon1/emitter"]
 
 transform/scale = Vector2( 1, 1 )
+type = 0
+
+[node name="Area2D" parent="Weapon1/emitter/Bullet"]
+
+linear_damp = 0.1
 
 [node name="Sprite" parent="Weapon1/emitter/Bullet"]
 

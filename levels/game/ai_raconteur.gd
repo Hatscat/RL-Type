@@ -3,7 +3,7 @@ extends Timer
 
 
 # config
-var time_weight = 0.25
+var time_weight = 1
 var damage_weight = 1
 var kill_weight = 1
 
