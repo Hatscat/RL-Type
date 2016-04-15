@@ -13,5 +13,6 @@ var enemy_types_nb = enemy_paths.size()
 
 
 func add_score(additional_score):
+	print("hahaha")
 	score += additional_score
 	get_node("/root/events_emitter").emit_signal("score_changed", score)

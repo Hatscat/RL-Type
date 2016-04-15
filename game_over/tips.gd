@@ -1,7 +1,7 @@
 
 extends Label
 
-var tips = ["To live longer, try to not die", "Not so bad for a looser", "More pew-pew, less booooom", "Dying is fun !" ]
+var tips = ["To live longer, try to not die", "Not so bad for a loser", "More pew-pew, less booooom", "Dying is fun !" ]
 
 
 func _ready():

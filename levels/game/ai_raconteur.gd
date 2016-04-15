@@ -18,9 +18,9 @@ var events_emitter
 func _ready():
 	game_data = get_node("/root/game_data")
 	events_emitter = get_node("/root/events_emitter")
-	events_emitter.connect("enemy_destroyed", self, "enemy_destroyed", [1])
-	events_emitter.connect("enemy_get_away", self, "enemy_get_away", [1])
-	events_emitter.connect("player_hit", self, "player_hit", [0])
+	events_emitter.connect("enemy_destroyed", self, "_enemy_destroyed")
+	events_emitter.connect("enemy_get_away", self, "enemy_get_away")
+	events_emitter.connect("player_hit", self, "player_hit")
 	set_process(true)
 
 
@@ -70,7 +70,7 @@ func get_enemy_wave_array(threat): # todo: by types... [type 0, type 1, type 2, 
 	return enemy_wave_array
 
 
-func enemy_destroyed(enemy_type):
+func _enemy_destroyed(enemy_type):
 	player_threat = int(player_threat + kill_weight) #enemy_type
 	game_data.add_score(24 + enemy_type * enemy_type * 42)
 

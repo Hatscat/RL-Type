@@ -16,6 +16,6 @@ func spawn_enemy_wave(enemy_types_arr):
 	for i in range(enemy_types_arr.size()):
 		if enemy_types_arr[i] > 0:
 			var new_path = game_data.enemy_paths[i].instance()
-			new_path.set_pos(get_node("/root/game_data").player.get_parent().get_pos())
+			new_path.set_pos(get_node("/root/game_data").player.get_parent().get_pos() + Vector2(1000, 0))
 			add_child(new_path)
 			new_path.emit_enemies(enemy_types_arr[i])

@@ -86,7 +86,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 2 )
-speed = 400
+speed = 800
 max_life = 10
 
 [node name="ship" type="Sprite" parent="player"]
@@ -187,6 +187,7 @@ autoplay = ""
 
 [node name="explosion" type="Sprite" parent="player"]
 
+visibility/visible = false
 transform/pos = Vector2( 0.0836463, -8.45668 )
 transform/scale = Vector2( 2.05257, 2.05257 )
 texture = ExtResource( 6 )

@@ -21,18 +21,18 @@ tracks/0/path = NodePath("TextureFrame 2:rect/pos")
 tracks/0/interp = 1
 tracks/0/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( -4, -4 ), "values":[ Vector2( 755, -314 ), Vector2( 755, 260 ) ] }
 tracks/1/type = "value"
-tracks/1/path = NodePath("PlayBtn:rect/pos")
+tracks/1/path = NodePath("Control:rect/pos")
 tracks/1/interp = 1
-tracks/1/keys = { "cont":true, "times":FloatArray( 1, 2 ), "transitions":FloatArray( -4, -4 ), "values":[ Vector2( 1052, 1250 ), Vector2( 1052, 566 ) ] }
+tracks/1/keys = { "cont":true, "times":FloatArray( 1, 2 ), "transitions":FloatArray( -4, -0.25 ), "values":[ Vector2( -550, 0 ), Vector2( 0, 0 ) ] }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Control:rect/pos")
+tracks/2/path = NodePath("PlayBtn:rect/pos")
 tracks/2/interp = 1
-tracks/2/keys = { "cont":true, "times":FloatArray( 2, 3 ), "transitions":FloatArray( -4, -0.25 ), "values":[ Vector2( -550, 0 ), Vector2( 0, 0 ) ] }
+tracks/2/keys = { "cont":true, "times":FloatArray( 2, 3 ), "transitions":FloatArray( -4, -4 ), "values":[ Vector2( 1052, 1250 ), Vector2( 1052, 566 ) ] }
 
 [sub_resource type="Animation" id=2]
 
 resource/name = "MenuExitAnim"
-length = 2.0
+length = 3.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -40,9 +40,13 @@ tracks/0/path = NodePath("TextureFrame 2:visibility/opacity")
 tracks/0/interp = 1
 tracks/0/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( -4, -4 ), "values":[ 1.0, 0.0 ] }
 tracks/1/type = "value"
-tracks/1/path = NodePath("PlayBtn:rect/pos")
+tracks/1/path = NodePath("Control:rect/pos")
 tracks/1/interp = 1
-tracks/1/keys = { "cont":true, "times":FloatArray( 1, 2 ), "transitions":FloatArray( -4, -4 ), "values":[ Vector2( 1052, 566 ), Vector2( 1977, 566 ) ] }
+tracks/1/keys = { "cont":true, "times":FloatArray( 1, 2 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 0, 0 ), Vector2( -550, 0 ) ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayBtn:rect/pos")
+tracks/2/interp = 1
+tracks/2/keys = { "cont":true, "times":FloatArray( 2, 3 ), "transitions":FloatArray( -4, -4 ), "values":[ Vector2( 1052, 566 ), Vector2( 1977, 566 ) ] }
 
 [node name="Control" type="Control"]
 
@@ -74,9 +78,9 @@ anchor/top = 3
 anchor/right = 1
 anchor/bottom = 3
 margin/left = 1165.0
-margin/top = 854.0
-margin/right = 89.0
-margin/bottom = 594.0
+margin/top = 280.0
+margin/right = 73.0
+margin/bottom = 16.0
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -90,9 +94,9 @@ anchor/top = 3
 anchor/right = 1
 anchor/bottom = 3
 margin/left = 868.0
-margin/top = -710.0
+margin/top = -26.0
 margin/right = 356.0
-margin/bottom = -901.0
+margin/bottom = -217.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -128,8 +132,7 @@ autoplay = ""
 
 anchor/right = 1
 anchor/bottom = 1
-margin/left = -550.0
-margin/right = 542.0
+margin/right = -10.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2

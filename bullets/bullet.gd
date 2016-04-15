@@ -117,5 +117,5 @@ func set_active(_bool):
 func take_damage(damage):
 	life -= damage
 
-	if(life <= 0):
+	if(is_active && life <= 0):
 		explode()
