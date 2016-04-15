@@ -16,4 +16,5 @@ func _process(delta):
 
 
 func _ready():
+	#get_node("/root/game_data").player = self
 	set_process(true)

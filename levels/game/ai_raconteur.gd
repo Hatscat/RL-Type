@@ -1,9 +1,11 @@
-	
+
 extends Timer
 
 
 # config
-#var time_weight
+var time_weight = 0.25
+var damage_weight = 1
+var kill_weight = 1
 
 # private vars
 var time_counter = 0
@@ -20,9 +22,6 @@ func _ready():
 	events_emitter.connect("enemy_get_away", self, "enemy_get_away", [1])
 	events_emitter.connect("player_hit", self, "player_hit", [0])
 	set_process(true)
-	#enemies_wave()
-	#set_wait_time(1)
-	#start()
 
 
 func _process(delta):
@@ -38,42 +37,41 @@ func reset():
 
 
 func get_threat():
-	return int(player_threat + floor(time_counter) * 1) # linear to start
+	return int(player_threat + floor(time_counter) * time_weight) # linear to start
 
 
 func enemy_wave():
-	#yield(self, "timeout")
+
 	var threat = get_threat()
-	print("enemy wave!  ", threat)
+	print("enemy wave! threat:  ", threat)
 	var enemy_array = get_enemy_wave_array(threat)
 	print("ennemies:  ", enemy_array)
 	events_emitter.emit_signal("lets_spawn_enemy_wave", enemy_array)
 	reset()
-	#set_wait_time(1)
-	#pass
+
 
 
 func get_enemy_wave_array(threat): # todo: by types... [type 0, type 1, type 2, etc.]
 	var enemy_wave_array = []
+	for i in range(game_data.enemy_types_nb):
+		enemy_wave_array.append(0)
 	var rnd = randf()
-	var p = 1.0 / (game_data.enemy_types_nb * 1.5)
-	for i in range(game_data.enemy_types_nb, 0, -1):
+	var p = 1.0 / (game_data.enemy_types_nb * 1.1)
+	for i in range(1, game_data.enemy_types_nb + 1):
 		if threat % i == 0 and randf() < p:
-			for ii in range(0, threat, i):
-				enemy_wave_array.append(i)
-	if enemy_wave_array.size() > 0:
-		return enemy_wave_array
+			enemy_wave_array[i-1] = threat / i
+			return enemy_wave_array
 	while threat > 0:
-		var enemy_val = randi() % game_data.enemy_types_nb
+		var enemy_val = (randi() % game_data.enemy_types_nb) + 1
 		if enemy_val > threat:
 			enemy_val = threat
-		enemy_wave_array.append(enemy_val)
+		enemy_wave_array[enemy_val - 1] += 1
 		threat -= enemy_val
 	return enemy_wave_array
 
 
 func enemy_destroyed(enemy_type):
-	player_threat += enemy_type
+	player_threat = int(player_threat + kill_weight) #enemy_type
 	game_data.add_score(24 + enemy_type * enemy_type * 42)
 
 
@@ -82,4 +80,4 @@ func enemy_get_away(enemy_type):
 
 
 func player_hit(dammages):
-	player_threat -= 1 # floor((dammages + 0.0) / game_data.player.max_hp) * game_data.enemy_types_nb)
+	player_threat = int(player_threat - damage_weight) # floor((dammages + 0.0) / game_data.player.max_hp) * game_data.enemy_types_nb)

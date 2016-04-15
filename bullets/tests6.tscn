@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://bullets/tests.gd" type="Script" id=1]
+[ext_resource path="res://bullets/bullets_emitter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://bullets/bullet_line.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "complexe"
+length = 4.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:polygon")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ Vector2Array( 23.2383, -73.4518, 2.23162, -29.4635, 3.2904, -12.5096, 18.9877, -7.36765, 55.6235, -16.2221, 15.4935, 5.39133, -9.67278, -0.866241, -6.2542, -31.195 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:bullet_stick_target")
+tracks/1/interp = 1
+tracks/1/keys = { "cont":false, "times":FloatArray( 0, 4 ), "transitions":FloatArray( 1, 1 ), "values":[ true, false ] }
+
+[node name="Node2D" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="bullets_emitter_1" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 972.914, 69.5918 )
+bullet_sprite = ExtResource( 3 )
+bullet_color = Color( 0.0546875, 1, 0, 1 )
+bullet_scale = Vector2( 0.3, 0.3 )
+bullet_anim_name = "sin"
+bullet_anim_speed = 5.0
+close_shape = true
+shape_speed = 50
+shape_direction_deg = 170.0
+shape_anim_name = "complex"
+
+[node name="shape" type="Polygon2D" parent="bullets_emitter_1"]
+
+transform/pos = Vector2( -117.792, 196.404 )
+transform/rot = 22.8198
+transform/scale = Vector2( 3.02624, 1.96966 )
+polygon = Vector2Array( 23.2383, -73.4518, 2.23162, -29.4635, 3.2904, -12.5096, 18.9877, -7.36765, 55.6235, -16.2221, 15.4935, 5.39133, -9.67278, -0.866241, -6.2542, -31.195 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 0.12549 )
+offset = Vector2( -10.0984, 17 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="anim" type="AnimationPlayer" parent="bullets_emitter_1/shape"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/complexe = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="bullets_emitter_2" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 12.2434, 575.441 )
+bullet_color = Color( 1, 0, 0, 1 )
+bullet_scale = Vector2( 0.2, 0.2 )
+
+[node name="shape" type="Polygon2D" parent="bullets_emitter_2"]
+
+transform/pos = Vector2( 141.277, -120.283 )
+transform/rot = -49.1614
+transform/scale = Vector2( 2, 1 )
+polygon = Vector2Array( -72.1918, -26.6969, -2.95847, -52.7612, 67.0894, -24.2534 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 0.12549 )
+offset = Vector2( 36, -33 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+
