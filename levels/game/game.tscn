@@ -29,6 +29,8 @@ transform/pos = Vector2( 328.769, 595.296 )
 
 [node name="bullets_emitter" parent="Node2D"]
 
+bullet_dir_radom = false
+bullet_random_dir_range = [ 0.0, 180.0 ]
 bullet_directions_deg = [ 0, 45, 90, 180 ]
 
 [node name="shape" parent="Node2D/bullets_emitter"]
