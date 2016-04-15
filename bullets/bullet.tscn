@@ -132,7 +132,5 @@ visibility/visible = false
 transform/pos = Vector2( 0.328477, 0.328477 )
 transform/scale = Vector2( 1.39121, 1.39121 )
 
-[connection signal="exit_screen" from="VisibilityNotifier2D" to="." method="_on_visibility_exit_screen"]
-
 
 [editable path="explosion"]

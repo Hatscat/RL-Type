@@ -3,7 +3,10 @@ extends Node2D
 
 export(String) var root_node_name = "Node2D"
 # bullets config
-export(float) var bullet_direction_deg = 0
+export(bool) var bullet_dir_radom = false
+export var bullet_random_dir_range = [0.0,180.0]
+export var bullet_directions_deg = [0, 45, 90, 135, 180]
+export(float) var bullet_directions_add = 0
 export(bool) var bullet_stick_target = false
 export(String) var bullet_node_path = "Bullet"
 
@@ -91,12 +94,16 @@ func spawn_bullet(Bullet, bullets_groups, delay=0, idx=0, target_pts=null, targe
 		bullets.append(weakref(b))
 		b.set_pos(get_global_pos())
 		b.set_active(true)
-		b.direction = deg2rad(bullet_direction_deg)
+		var index = (idx+i) % bullet_directions_deg.size()
+		if(bullet_dir_radom):
+			b.direction = deg2rad(rand_range(bullet_random_dir_range[0], bullet_random_dir_range[1]))
+		else:
+			b.direction = deg2rad(bullet_directions_deg[index] + bullet_directions_add * (idx+i))
 		if target_pts != null:
 			b.target = target_pts[target_idx]
 			b.stick_target = bullet_stick_target
 		b.tween_type = null #todo
-		b.emitter = self
+		b.emitter = weakref(self)
 		get_tree().get_root().get_node(root_node_name).call_deferred("add_child",b)
 		target_idx += 1
 	idx += 1

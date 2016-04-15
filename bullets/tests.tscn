@@ -71,6 +71,9 @@ close_shape = true
 shape_speed = 30
 shape_direction_deg = 155.0
 shape_anim_name = "polygons"
+is_auto_play = false
+auto_bullet_nb = null
+auto_time_bullet = null
 
 [node name="shape" type="Polygon2D" parent="bullets_emitter_1"]
 
@@ -104,17 +107,12 @@ autoplay = ""
 
 [node name="Bullet" parent="bullets_emitter_1" instance=ExtResource( 3 )]
 
-damages = 1
-max_speed = 200
-sender = "is_enemy"
-
-[node name="Area2D" parent="bullets_emitter_1/Bullet"]
-
-linear_damp = 0.1
-
 [node name="bullets_emitter_2" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 12.2434, 575.441 )
+is_auto_play = false
+auto_bullet_nb = null
+auto_time_bullet = null
 
 [node name="shape" type="Polygon2D" parent="bullets_emitter_2"]
 
@@ -135,41 +133,14 @@ invert/border = 100.0
 
 [node name="Bullet" parent="bullets_emitter_2" instance=ExtResource( 3 )]
 
-damages = 1
-max_speed = 200
-sender = "is_enemy"
-
-[node name="Area2D" parent="bullets_emitter_2/Bullet"]
-
-linear_damp = 0.1
-
 [node name="bullets_emitter_3" parent="." instance=ExtResource( 2 )]
 
 bullet_direction_deg = 330.0
-
-[node name="Bullet" parent="bullets_emitter_3"]
-
-damages = 1
-max_speed = 200
-sender = "is_enemy"
-
-[node name="Area2D" parent="bullets_emitter_3/Bullet"]
-
-linear_damp = 0.1
-
-[node name="Sprite" parent="bullets_emitter_3/Bullet/Area2D"]
-
-modulate = Color( 0.222168, 1, 0.15625, 1 )
+is_auto_play = false
+auto_bullet_nb = null
+auto_time_bullet = null
 
 [node name="Bullet" parent="bullets_emitter_3" instance=ExtResource( 3 )]
-
-damages = 1
-max_speed = 200
-sender = "is_enemy"
-
-[node name="Area2D" parent="bullets_emitter_3/Bullet"]
-
-linear_damp = 0.1
 
 
 [editable path="bullets_emitter_1/Bullet"]

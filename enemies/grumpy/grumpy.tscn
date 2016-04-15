@@ -4,7 +4,7 @@
 [ext_resource path="res://enemies/grumpy/grumpy_mouse_sprite.png" type="Texture" id=2]
 [ext_resource path="res://enemies/is_enemy.gd" type="Script" id=3]
 [ext_resource path="res://enemies/base_enemy.gd" type="Script" id=4]
-[ext_resource path="res://bullets/patterns/test_pattern.tscn" type="PackedScene" id=5]
+[ext_resource path="res://bullets/bullets_emitter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://enemies/explosion/explosion_enemy.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
@@ -23,8 +23,9 @@ tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.5 ), "transitions":Float
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="grumpy" type="Node2D"]
+[node name="Node2D" type="Node2D"]
 
+transform/scale = Vector2( 0.5, 0.5 )
 script/script = ExtResource( 1 )
 damages = 5
 max_speed = 0
@@ -82,11 +83,23 @@ rect = Rect2( -10, -10, 20, 20 )
 script/script = ExtResource( 4 )
 __meta__ = { "_editor_collapsed":true }
 cooldown = 3.0
-bullets_nb = 3.0
-total_time = 1.0
-patern_name = "Node2D"
+bullets_nb = 18.0
+total_time = 3.0
+patern_name = "emitter"
 
-[node name="Node2D" parent="Weapon" instance=ExtResource( 5 )]
+[node name="emitter" parent="Weapon" instance=ExtResource( 5 )]
+
+bullet_directions_deg = [ 0 ]
+bullet_directions_add = 20.0
+
+[node name="Bullet" parent="Weapon/emitter"]
+
+transform/scale = Vector2( 1, 1 )
+max_speed = 500
+
+[node name="Sprite" parent="Weapon/emitter/Bullet"]
+
+modulate = Color( 0.0361633, 0.925781, 0.0917645, 1 )
 
 [node name="explosion" parent="." instance=ExtResource( 6 )]
 
@@ -98,5 +111,9 @@ transform/scale = Vector2( 5.95994, 5.95994 )
 
 modulate = Color( 0.5625, 0.322998, 0.322998, 1 )
 
+[connection signal="exit_screen" from="VisibilityNotifier2D" to="." method="_on_visibility_exit_screen"]
 
+
+[editable path="Weapon/emitter"]
+[editable path="Weapon/emitter/Bullet"]
 [editable path="explosion"]

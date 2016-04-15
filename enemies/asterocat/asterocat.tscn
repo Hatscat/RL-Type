@@ -1,5 +1,92 @@
-[gd_scene format=1]
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://bullets/bullet.gd" type="Script" id=1]
+[ext_resource path="res://enemies/asterocat/asterocat.png" type="Texture" id=2]
+[ext_resource path="res://enemies/asterocat/rotationSpeedRandom.gd" type="Script" id=3]
+[ext_resource path="res://enemies/is_enemy.gd" type="Script" id=4]
+[ext_resource path="res://enemies/explosion/explosion_enemy.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "Rotation"
+length = 4.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/rot")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 4 ), "transitions":FloatArray( 1, 1 ), "values":[ 0.0, 360.0 ] }
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 10.0
 
 [node name="Node2D" type="Node2D"]
 
+script/script = ExtResource( 1 )
+damages = 1
+max_speed = 200
+is_enemy = false
+max_life = 10
+anim_name = null
+rotate_to_target = true
 
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/rot = 177.635
+texture = ExtResource( 2 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Rotation = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "Rotation"
+script/script = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 11.0789, 0, 0, 11.0789, 0.113031, 0.113087 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 4 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+transform/pos = Vector2( 0.113031, 0.113087 )
+transform/scale = Vector2( 11.0789, 11.0789 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="explosion" parent="." instance=ExtResource( 5 )]
+
+visibility/visible = false
+transform/pos = Vector2( 5.57599, -4.62048 )
+transform/scale = Vector2( 2.84649, 2.84649 )
+
+[node name="Sprite" parent="explosion"]
+
+frame = 11
+modulate = Color( 0.128906, 0.12236, 0.12236, 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+transform/pos = Vector2( 1.01147, -8.05227 )
+transform/scale = Vector2( 11.4385, 12.3771 )
+rect = Rect2( -10, -10, 20, 20 )
+
+
+[editable path="explosion"]

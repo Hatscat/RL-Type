@@ -43,13 +43,14 @@ func _ready():
 		set_scale(scale)
 	if tween_type != null:
 		pass #todo
-	if anim_name != null && get_node("Area2D/Anim") != null && get_node("Area2D/Anim").get_animation(anim_name) != null:
+	if is_active && anim_name != null && get_node("Area2D/Anim") != null && get_node("Area2D/Anim").get_animation(anim_name) != null:
 		get_node("Area2D/Anim").play(anim_name)
-		get_node("Area2D/Anim").seek(randf() * get_node("Area2D/Anim").get_animation(anim_name).get_length())
+		#get_node("Area2D/Anim").seek(randf() * get_node("Area2D/Anim").get_animation(anim_name).get_length())
 		if anim_speed != null:
 			get_node("Area2D/Anim").set_speed(anim_speed)
 	set_process(true)
 	get_node("Area2D").connect("area_enter", self, "_on_area_enter")
+	get_node("VisibilityNotifier2D").connect("exit_viewport", self, "_on_visibility_exit_screen")
 
 
 func _process(delta):
@@ -69,10 +70,13 @@ func _process(delta):
 	else:
 		translate(Vector2(cos(direction), sin(-direction)) * sd)
 
-func _on_visibility_exit_screen():
-	if emitter != null and emitter.has_method("remove_bullet"):
-		emitter.remove_bullet(self)
+func _on_visibility_exit_screen(viewport):
+	if emitter != null:
+		var ref = emitter.get_ref()
+		if ref and ref.has_method("remove_bullet"):
+			ref.remove_bullet(self)
 	queue_free()
+	print("++")
 
 
 func explode():

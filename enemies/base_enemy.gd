@@ -23,7 +23,7 @@ func _process(delta):
 		timer -= delta
 
 func _ready():
-	weapon = get_node(patern_name + "/bullets_emitter")
+	weapon = get_node(patern_name)
 	set_process(true)
 
 func is_weapon():

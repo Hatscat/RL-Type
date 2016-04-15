@@ -27,5 +27,13 @@ transform/pos = Vector2( 328.769, 595.296 )
 
 [node name="Node2D" parent="." instance=ExtResource( 6 )]
 
+[node name="bullets_emitter" parent="Node2D"]
+
+bullet_directions_deg = [ 0, 45, 90, 180 ]
+
+[node name="shape" parent="Node2D/bullets_emitter"]
+
+visibility/visible = false
+
 
 [editable path="Node2D"]

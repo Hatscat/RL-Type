@@ -38,13 +38,14 @@ script/script = ExtResource( 2 )
 
 [node name="Emmiter" parent="Colider" instance=ExtResource( 3 )]
 
-is_auto_play = false
-auto_bullet_nb = null
-auto_time_bullet = null
+bullet_dir_radom = false
+bullet_random_dir_range = [ 0.0, 180.0 ]
+bullet_directions_deg = [ 0, 45, 90, 180 ]
 
 [node name="Bullet" parent="Colider/Emmiter"]
 
 max_speed = 2000
+is_enemy = false
 
 [node name="Sprite" parent="Colider/Emmiter/Bullet"]
 
