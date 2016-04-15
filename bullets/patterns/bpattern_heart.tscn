@@ -22,6 +22,31 @@ close_shape = true
 shape_direction_deg = 180.0
 shape_anim_name = "heart"
 
+[node name="Bullet" parent="bullets_emitter"]
+
+damages = 1
+max_speed = 500
+sender = "is_enemy"
+
+[node name="Area2D" parent="bullets_emitter/Bullet"]
+
+linear_damp = 0.1
+
+[node name="Sprite" parent="bullets_emitter/Bullet/Area2D"]
+
+texture = ExtResource( 2 )
+modulate = Color( 0.90625, 0.0531006, 0.832932, 1 )
+
+[node name="Coll" parent="bullets_emitter/Bullet/Area2D"]
+
+transform/pos = Vector2( 2.2, -0.4 )
+transform/scale = Vector2( 1.6, 0.8 )
+
+[node name="VisibilityNotifier2D" parent="bullets_emitter/Bullet"]
+
+transform/pos = Vector2( 0, 0 )
+transform/scale = Vector2( 2.5, 2.5 )
+
 [node name="shape" type="Polygon2D" parent="bullets_emitter"]
 
 transform/pos = Vector2( -335.787, -37.1009 )
@@ -49,3 +74,5 @@ blend_times = [  ]
 autoplay = "heart"
 
 
+[editable path="bullets_emitter"]
+[editable path="bullets_emitter/Bullet"]

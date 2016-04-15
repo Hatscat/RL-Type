@@ -76,12 +76,12 @@ func _on_visibility_exit_screen(viewport):
 		if ref and ref.has_method("remove_bullet"):
 			ref.remove_bullet(self)
 	queue_free()
-	print("++")
 
 
 func explode():
 	is_active = false
 	set_process(false)
+	#get_node("/root/game_data").player.get_parrent().get_node("SamplePlayer").play("sound_explode")
 	get_node("Sprite").hide()
 	get_node("explosion").show()
 	get_node("explosion/AnimationPlayer").play("explode")

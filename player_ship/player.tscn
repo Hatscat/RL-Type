@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://player_ship/player.gd" type="Script" id=1]
 [ext_resource path="res://player_ship/player1.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://player_ship/burn.png" type="Texture" id=4]
 [ext_resource path="res://player_ship/fire.png" type="Texture" id=5]
 [ext_resource path="res://player_ship/explosion/explosion_player.png" type="Texture" id=6]
+[ext_resource path="res://levels/game/sound_explode.wav" type="Sample" id=7]
+[ext_resource path="res://levels/game/sound_shoot.wav" type="Sample" id=8]
+[ext_resource path="res://levels/game/sounds.gd" type="Script" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -62,6 +65,11 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.4 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, 23 ] }
 
+[sub_resource type="SampleLibrary" id=6]
+
+samples/sound_explode = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/sound_shoot = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
+
 [node name="Player" type="Node2D"]
 
 script/script = ExtResource( 1 )
@@ -87,6 +95,7 @@ transform/pos = Vector2( 0.396673, 0 )
 transform/scale = Vector2( 0.182537, 0.182537 )
 texture = ExtResource( 3 )
 vframes = 6
+__meta__ = { "_editor_collapsed":true }
 
 [node name="anim" type="AnimationPlayer" parent="player/ship"]
 
@@ -183,6 +192,8 @@ transform/scale = Vector2( 2.05257, 2.05257 )
 texture = ExtResource( 6 )
 vframes = 3
 hframes = 8
+frame = 23
+__meta__ = { "_editor_collapsed":true }
 
 [node name="anim" type="AnimationPlayer" parent="player/explosion"]
 
@@ -213,6 +224,24 @@ drag_margin/left = 0.2
 drag_margin/top = 0.2
 drag_margin/right = 0.2
 drag_margin/bottom = 0.2
+
+[node name="SamplePlayer" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 6 )
+default/volume_db = 0.0
+default/pitch_scale = 0.75
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+script/script = ExtResource( 9 )
 
 [connection signal="area_enter" from="player" to="player" method="_on_player_area_enter"]
 
