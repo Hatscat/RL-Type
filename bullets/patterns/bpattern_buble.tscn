@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://bullets/bullets_emitter.tscn" type="PackedScene" id=1]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "buble"
+length = 2.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/scale")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 1, 2 ), "transitions":FloatArray( 1, 1, 1 ), "values":[ Vector2( 2, 1 ), Vector2( 0.5, 0.25 ), Vector2( 2, 1 ) ] }
+
+[node name="bpattern_buble" type="Node2D"]
+
+[node name="bullets_emitter" parent="." instance=ExtResource( 1 )]
+
+transform/scale = Vector2( 0.5, 0.5 )
+bullet_stick_target = true
+close_shape = true
+shape_speed = 200
+shape_direction_deg = 180.0
+
+[node name="Bullet" parent="bullets_emitter"]
+
+damages = 1
+max_speed = 500
+sender = "is_enemy"
+
+[node name="shape" type="Polygon2D" parent="bullets_emitter"]
+
+transform/pos = Vector2( -200, 0 )
+transform/scale = Vector2( 2, 1 )
+polygon = Vector2Array( -36.8371, -125.049, -76.0379, -109.252, -104.677, -50.4662, -114.475, 27.9154, -100.909, 115.341, -74.5305, 166.591, -36.7051, 189.827, 2.34369, 168.098, 30.9832, 109.312, 43.0419, 29.4228, 31.7368, -58.0029, 5.3584, -109.252 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 0.12549 )
+offset = Vector2( 36, -33 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="bullets_emitter/shape"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/buble = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "buble"
+
+
+[editable path="bullets_emitter"]
