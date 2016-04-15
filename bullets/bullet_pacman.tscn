@@ -42,7 +42,7 @@ tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.3, 0.9 ), "transitions":
 transform/scale = Vector2( 0.5, 0.5 )
 script/script = ExtResource( 1 )
 damages = 1
-max_speed = 200
+max_speed = 300
 sender = "is_enemy"
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -60,6 +60,7 @@ script/script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="Area2D"]
 
 texture = ExtResource( 3 )
+modulate = Color( 0.92549, 0.901961, 0.4, 1 )
 
 [node name="Tween" type="Tween" parent="Area2D"]
 
