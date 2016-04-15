@@ -5,12 +5,14 @@ var timer = 0
 var canshoot = true
 var weapon
 var player_anim
+var player_sound
 
 func _process(delta):
 	if Input.is_action_pressed("shoot"):
 		if canshoot:
 			player_anim.play("fire")
 			weapon.shot()
+			player_sound.play("sound_shoot")
 			canshoot = false
 			timer = cooldown
 	else:
@@ -24,6 +26,7 @@ func _process(delta):
 func _ready():
 	weapon = get_node("Behaviour")
 	player_anim = get_node("/root/game_data").player.get_node("fire").get_node("anim")
+	player_sound = get_node("/root/game_data").player.get_parent().get_node("SamplePlayer")
 	get_node("/root/events_emitter").connect("player_death", self, "on_player_death")
 	
 func on_picked():

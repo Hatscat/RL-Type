@@ -1,33 +1,16 @@
 [gd_scene load_steps=2 format=1]
 
-[ext_resource path="res://enemies/lamasticot/lamasticot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://enemies/nyan/nyan.tscn" type="PackedScene" id=1]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Node2D" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( 863.64, 511.786 )
-max_speed = -300
-
-[node name="Sprite" parent="Node2D"]
-
-transform/rot = -19.0661
-
-[node name="head" parent="Node2D/Sprite"]
-
-transform/rot = 15.6855
-
-[node name="propulsion" parent="Node2D/Sprite"]
-
-transform/rot = 20.6207
+transform/pos = Vector2( 698.376, 335.86 )
 
 [node name="Area2D" parent="Node2D"]
 
 linear_damp = 0.1
-
-[node name="explosion" parent="Node2D"]
-
-transform/rot = -0.173598
 
 
 [editable path="Node2D"]

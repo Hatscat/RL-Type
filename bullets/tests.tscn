@@ -66,14 +66,13 @@ script/script = ExtResource( 1 )
 [node name="bullets_emitter_1" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 972.914, 69.5918 )
+bullet_dir_radom = false
+bullet_random_dir_range = [ 0.0, 180.0 ]
 bullet_stick_target = true
 close_shape = true
 shape_speed = 30
 shape_direction_deg = 155.0
 shape_anim_name = "polygons"
-is_auto_play = false
-auto_bullet_nb = null
-auto_time_bullet = null
 
 [node name="shape" type="Polygon2D" parent="bullets_emitter_1"]
 
@@ -110,9 +109,8 @@ autoplay = ""
 [node name="bullets_emitter_2" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 12.2434, 575.441 )
-is_auto_play = false
-auto_bullet_nb = null
-auto_time_bullet = null
+bullet_dir_radom = false
+bullet_random_dir_range = [ 0.0, 180.0 ]
 
 [node name="shape" type="Polygon2D" parent="bullets_emitter_2"]
 
@@ -135,10 +133,8 @@ invert/border = 100.0
 
 [node name="bullets_emitter_3" parent="." instance=ExtResource( 2 )]
 
-bullet_direction_deg = 330.0
-is_auto_play = false
-auto_bullet_nb = null
-auto_time_bullet = null
+bullet_dir_radom = false
+bullet_random_dir_range = [ 0.0, 180.0 ]
 
 [node name="Bullet" parent="bullets_emitter_3" instance=ExtResource( 3 )]
 

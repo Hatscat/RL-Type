@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://game_over/game_over.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/game/HUD.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://player_ship/player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://player_ship/weapons/weapon.tscn" type="PackedScene" id=5]
 [ext_resource path="res://enemies/paths/test.scn" type="PackedScene" id=6]
+[ext_resource path="res://levels/game/El_Magicia.ogg" type="AudioStream" id=7]
 
 [node name="Node2D" type="Node2D"]
 
@@ -29,11 +30,24 @@ transform/pos = Vector2( 328.769, 595.296 )
 
 [node name="bullets_emitter" parent="Node2D"]
 
+bullet_dir_radom = false
+bullet_random_dir_range = [ 0.0, 180.0 ]
 bullet_directions_deg = [ 0, 45, 90, 180 ]
 
 [node name="shape" parent="Node2D/bullets_emitter"]
 
 visibility/visible = false
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 7 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = true
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
 
 
 [editable path="Node2D"]
