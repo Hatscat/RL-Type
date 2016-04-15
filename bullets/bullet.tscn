@@ -41,12 +41,12 @@ tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.3, 0.9 ), "transitions":
 [node name="Node2D" type="Node2D"]
 
 transform/scale = Vector2( 0.5, 0.5 )
-z/z = -1
 script/script = ExtResource( 1 )
 damages = 1
 max_speed = 200
 is_enemy = false
 max_life = 10
+type = 0
 anim_name = null
 rotate_to_target = true
 
@@ -129,8 +129,10 @@ texture = ExtResource( 3 )
 [node name="explosion" parent="." instance=ExtResource( 4 )]
 
 visibility/visible = false
-transform/pos = Vector2( 0.328477, 0.328477 )
-transform/scale = Vector2( 1.39121, 1.39121 )
+transform/pos = Vector2( -0.764141, -0.161076 )
+transform/scale = Vector2( 1.53208, 1.53208 )
+
+[connection signal="exit_screen" from="VisibilityNotifier2D" to="." method="_on_visibility_exit_screen"]
 
 
 [editable path="explosion"]

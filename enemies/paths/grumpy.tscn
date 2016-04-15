@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://enemies/paths/enemies_emitter.gd" type="Script" id=1]
+[ext_resource path="res://bullets/bullets_emitter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://enemies/grumpy/grumpy.tscn" type="PackedScene" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+script/script = ExtResource( 1 )
+threat_level = 3
+total_time = 5.0
+
+[node name="bullets_emitter" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 2000.55, 547.121 )
+bullet_dir_radom = true
+bullet_random_dir_range = [ 0.0, 75.0 ]
+bullet_directions_deg = [ 0 ]
+bullet_position_add = Vector2( 0, 100 )
+bullet_node_path = "grumpy"
+
+[node name="grumpy" parent="bullets_emitter" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 109.728, -730.868 )
+max_speed = -200
+rotate_to_target = true
+
+

@@ -7,6 +7,7 @@ export(bool) var bullet_dir_radom = false
 export var bullet_random_dir_range = [0.0,180.0]
 export var bullet_directions_deg = [0, 45, 90, 135, 180]
 export(float) var bullet_directions_add = 0
+export(Vector2) var bullet_position_add = Vector2(0, 0)
 export(bool) var bullet_stick_target = false
 export(String) var bullet_node_path = "Bullet"
 
@@ -99,6 +100,7 @@ func spawn_bullet(Bullet, bullets_groups, delay=0, idx=0, target_pts=null, targe
 			b.direction = deg2rad(rand_range(bullet_random_dir_range[0], bullet_random_dir_range[1]))
 		else:
 			b.direction = deg2rad(bullet_directions_deg[index] + bullet_directions_add * (idx+i))
+			b.set_pos(b.get_pos() + bullet_position_add * (idx+i))
 		if target_pts != null:
 			b.target = target_pts[target_idx]
 			b.stick_target = bullet_stick_target

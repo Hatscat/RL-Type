@@ -54,7 +54,8 @@ damages = 1
 max_speed = 0
 is_enemy = false
 max_life = 10
-anim_name = null
+type = 3
+anim_name = ""
 rotate_to_target = true
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -146,6 +147,7 @@ transform/scale = Vector2( 8.88623, 8.88623 )
 texture = ExtResource( 6 )
 vframes = 4
 hframes = 5
+frame = 19
 modulate = Color( 0.617188, 0, 1, 1 )
 __meta__ = { "_editor_collapsed":true }
 
@@ -176,12 +178,18 @@ transform/pos = Vector2( 0, -1 )
 bullet_dir_radom = true
 bullet_random_dir_range = [ 0.0, 360.0 ]
 bullet_directions_deg = [ 358, 115, 236, 92, 275, 11, 349, 206, 37, 109, 155, 280, 75, 26, 284 ]
+bullet_position_add = Vector2( 0, 0 )
 
 [node name="Bullet" parent="Weapon/emitter"]
 
 transform/scale = Vector2( 1.30992, 0.247681 )
 max_speed = 1000
+type = 0
 rotate_to_target = false
+
+[node name="Area2D" parent="Weapon/emitter/Bullet"]
+
+linear_damp = 0.1
 
 [node name="Sprite" parent="Weapon/emitter/Bullet"]
 

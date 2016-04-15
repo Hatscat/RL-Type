@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://bullets/patterns/bpattern_tripleshot.gd" type="Script" id=1]
+[ext_resource path="res://bullets/patterns/bpattern_tripleshot.tscn" type="PackedScene" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="bpattern_tripleshot" parent="." instance=ExtResource( 2 )]
+
+

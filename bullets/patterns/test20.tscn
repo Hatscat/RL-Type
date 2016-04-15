@@ -9,4 +9,12 @@ script/script = ExtResource( 1 )
 
 [node name="bpattern_pacman" parent="." instance=ExtResource( 2 )]
 
+[node name="Bullet" parent="bullets_emitter/bpattern_pacman"]
 
+visibility/visible = false
+transform/pos = Vector2( -76.8744, -569.775 )
+max_speed = 350
+
+
+[editable path="bpattern_pacman"]
+[editable path="bpattern_pacman/bullets_emitter"]
