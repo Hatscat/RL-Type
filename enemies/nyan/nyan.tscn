@@ -38,8 +38,8 @@ tracks/0/keys = { "cont":true, "times":FloatArray( 0, 1, 2, 3, 4, 5, 6 ), "trans
 
 script/script = ExtResource( 1 )
 damages = 1
-max_speed = 0
-is_enemy = false
+max_speed = 200
+is_enemy = true
 max_life = 1
 anim_name = null
 rotate_to_target = true
@@ -113,6 +113,10 @@ bullet_directions_deg = [ 180 ]
 [node name="Bullet" parent="Weapon/emitter"]
 
 max_speed = 500
+
+[node name="Area2D" parent="Weapon/emitter/Bullet"]
+
+linear_damp = 0.1
 
 [node name="Sprite" parent="Weapon/emitter/Bullet"]
 

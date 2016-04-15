@@ -4,10 +4,12 @@ var score = 0
 var player = null
 var enemy_paths = [
 	preload("res://enemies/paths/astero_cat_1.tscn"),
-	preload("res://enemies/paths/astero_cat_2.tscn"),
-	preload("res://enemies/paths/astero_cat_3.tscn")
+	preload("res://enemies/paths/nyan_cat.scn"),
+	preload("res://enemies/paths/grumpy.tscn"),
+	preload("res://enemies/paths/lama.tscn"),
+	preload("res://enemies/paths/putin.tscn"),
 ]
-var enemy_types_nb = 3 #enemy_path.size()
+var enemy_types_nb = enemy_paths.size()
 
 
 func add_score(additional_score):
