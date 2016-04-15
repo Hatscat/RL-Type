@@ -67,7 +67,7 @@ tracks/0/keys = { "cont":true, "times":FloatArray( 0, 0.4 ), "transitions":Float
 
 [sub_resource type="SampleLibrary" id=6]
 
-samples/sound_explode = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/sound_explode = { "db":-5.0, "pitch":1.0, "sample":ExtResource( 7 ) }
 samples/sound_shoot = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
 
 [node name="Player" type="Node2D"]
@@ -228,7 +228,7 @@ drag_margin/bottom = 0.2
 
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
-config/polyphony = 1
+config/polyphony = 2
 config/samples = SubResource( 6 )
 default/volume_db = 0.0
 default/pitch_scale = 0.75

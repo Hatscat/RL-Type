@@ -87,7 +87,7 @@ func explode():
 	set_process(false)
 	if is_enemy:
 		get_node("/root/events_emitter").emit_signal("enemy_destroyed", type)
-	#get_node("/root/game_data").player.get_parrent().get_node("SamplePlayer").play("sound_explode")
+		get_node("/root/game_data").player.get_parent().get_node("SamplePlayer").play("sound_explode")
 	get_node("Sprite").hide()
 	get_node("explosion").show()
 	get_node("explosion/AnimationPlayer").play("explode")
